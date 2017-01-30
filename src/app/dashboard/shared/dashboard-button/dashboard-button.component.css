@@ -1,0 +1,28 @@
+button {
+  width: 200px;height: 70px;
+  /*border-bottom: rgb(83,109,254) 4px solid;*/
+  /*color: #111;*/
+  background-color: rgb(51, 66, 150);
+  color: #EEE;
+}
+
+.mdl-button:hover {
+    /*background-color: rgba(158,158,158,.2);*/
+    background-color: #448aff;
+}
+
+@media (max-width: 1024px) {
+  button {
+    width: 180px;
+    line-height: 18px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 839px) {
+  button {
+    width: 120px;
+    line-height: 18px;
+    font-size: 12px;
+  }
+}

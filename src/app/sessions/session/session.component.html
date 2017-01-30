@@ -1,0 +1,25 @@
+<article class="template animated slideInRight">
+  <div *ngIf="session">
+    <h4>{{editSession.name | uppercase}} details</h4>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label" for="nametext">Name</label>
+      <input type="text" id="nametext" class="mdl-textfield__input" [(ngModel)]="editSession.name" />
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label" for="levelText">Level</label>
+      <input type="text" id="levelText" class="mdl-textfield__input" [(ngModel)]="editSession.level" />
+    </div>
+
+    <div>
+      <button class="story-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
+      mdl-button--accent" (click)="save()">Save</button>
+      &nbsp;
+      <button class="story-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="cancel()" [class.not-displayed]="isAddMode()">Cancel</button>
+      &nbsp;
+      <button class="story-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="delete()" [class.not-displayed]="isAddMode()">Delete</button>
+    </div>
+
+  </div>
+</article>

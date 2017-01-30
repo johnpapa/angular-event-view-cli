@@ -1,0 +1,8 @@
+.speakers {
+  list-style-type: none;
+  padding: 0;
+}
+
+*.speakers li {
+  padding: 4px;
+}

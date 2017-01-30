@@ -1,0 +1,13 @@
+<article class="template animated slideInRight">
+  <h4>Sessions</h4>
+
+  <a href="" [routerLink]="['/sessions', 'new']"><button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Add</button></a>
+
+  <ev-filter-text (changed)="filterChanged($event)"></ev-filter-text>
+
+  <ul class="sessions">
+    <li *ngFor="let session of filteredSessions;trackBy:trackBySessions">
+      <ev-session-button [session]="session"></ev-session-button>
+    </li>
+  </ul>
+</article>

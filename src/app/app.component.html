@@ -1,3 +1,13 @@
-<h1>
-  {{title}}
-</h1>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <ev-nav></ev-nav>
+  <main class="mdl-layout__content">
+    <section>
+      <div class="page-content">
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </main>
+  <ev-spinner></ev-spinner>
+  <ev-toast></ev-toast>
+  <ev-modal></ev-modal>
+</div>

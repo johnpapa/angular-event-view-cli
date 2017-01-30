@@ -1,0 +1,15 @@
+<article class="template animated slideInRight">
+  <h4>Speakers</h4>
+
+  <a href="" [routerLink]="['/speakers', 'new']"><button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Add</button></a>
+
+  <ev-filter-text (changed)="filterChanged($event)"></ev-filter-text>
+
+  <ul class="speakers">
+    <li *ngFor="let speaker of filteredSpeakers | sortSpeakers;trackBy:trackBySpeakers">
+
+      <ev-speaker-button [speaker]="speaker"></ev-speaker-button>
+
+    </li>
+  </ul>
+</article>

@@ -1,0 +1,23 @@
+.mdl-cell--col-3 {
+  width: 25%;
+}
+
+@media (max-width: 839px) and (min-width: 480px){
+  .mdl-cell.mdl-cell--3-col {
+    width: 25%;
+  }
+}
+
+@media (max-width: 479px) and (min-width: 320px) {
+  .mdl-cell.mdl-cell--3-col {
+    width: 10em;
+    margin: 0.5em auto;
+  }
+}
+
+@media (max-width: 319px) {
+  .mdl-cell.mdl-cell--3-col {
+    width: 10em;
+    margin: 0.5em auto;
+  }
+}
