@@ -4,7 +4,7 @@ export class InMemoryStoreService {
   * Safe for consuming service to morph arrays and objects.
   */
   createDb() {
-    let speakers = [
+    const speakers = [
       {
         'id': 11,
         'name': 'Chewbacca',
@@ -87,7 +87,7 @@ export class InMemoryStoreService {
       }
     ];
 
-    let sessions = [
+    const sessions = [
       {
         'id': 130,
         'name': 'Angular 2 First Look',
@@ -145,7 +145,7 @@ export class InMemoryStoreService {
       }
     ];
 
-    let rooms = [
+    const rooms = [
       {
         'id': 30,
         'name': 'Millennium Falcon',
