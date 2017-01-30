@@ -80,7 +80,7 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   save() {
-    let speaker = this.speaker = this.entityService.merge(this.speaker, this.editSpeaker);
+    const speaker = this.speaker = this.entityService.merge(this.speaker, this.editSpeaker);
     if (speaker.id == null) {
       this.speakerService.addSpeaker(speaker)
         .subscribe(s => {

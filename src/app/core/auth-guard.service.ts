@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       return true;
     }
 
-    let url = `/${route.path}`;
+    const url = `/${route.path}`;
     this.router.navigate(['/login'], { queryParams: { redirectTo: url } });
     this.toastService.activate(this.deniedMessage);
     return this.userProfileService.isLoggedIn;
