@@ -9,8 +9,8 @@ import { SessionService } from '../shared/session.service';
 @Component({
   moduleId: module.id,
   selector: 'ev-session-list',
-  templateUrl: 'session-list.component.html',
-  styleUrls: ['session-list.component.css']
+  templateUrl: './session-list.component.html',
+  styleUrls: ['./session-list.component.css']
 })
 export class SessionListComponent implements OnDestroy, OnInit {
   private dbResetSubscription: Subscription;

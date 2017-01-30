@@ -16,16 +16,16 @@ var SessionButtonComponent = (function () {
     SessionButtonComponent.prototype.ngOnInit = function () {
     };
     __decorate([
-        core_1.Input(), 
+        core_1.Input(),
         __metadata('design:type', session_model_1.Session)
     ], SessionButtonComponent.prototype, "session", void 0);
     SessionButtonComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'ev-session-button',
-            templateUrl: 'session-button.component.html',
-            styleUrls: ['session-button.component.css'],
-        }), 
+            templateUrl: './session-button.component.html',
+            styleUrls: ['./session-button.component.css'],
+        }),
         __metadata('design:paramtypes', [])
     ], SessionButtonComponent);
     return SessionButtonComponent;

@@ -9,8 +9,8 @@ class MenuItem {
 @Component({
   moduleId: module.id,
   selector: 'ev-nav',
-  templateUrl: 'nav.component.html',
-  styleUrls: ['nav.component.css'],
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
   menuItems: MenuItem[];

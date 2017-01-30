@@ -5,8 +5,8 @@ import { Session } from '../session.model';
 @Component({
   moduleId: module.id,
   selector: 'ev-session-button',
-  templateUrl: 'session-button.component.html',
-  styleUrls: ['session-button.component.css'],
+  templateUrl: './session-button.component.html',
+  styleUrls: ['./session-button.component.css'],
 })
 export class SessionButtonComponent implements OnInit {
   @Input() session: Session;

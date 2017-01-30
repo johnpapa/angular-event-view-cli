@@ -6,8 +6,8 @@ import { Subscription } from 'rxjs/Subscription'
 @Component({
   moduleId: module.id,
   selector: 'ev-toast',
-  templateUrl: 'toast.component.html',
-  styleUrls: ['toast.component.css']
+  templateUrl: './toast.component.html',
+  styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnDestroy, OnInit {
   private defaults = {

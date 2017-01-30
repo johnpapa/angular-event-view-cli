@@ -7,8 +7,8 @@ const KEY_ESC = 27;
 @Component({
   moduleId: module.id,
   selector: 'ev-modal',
-  templateUrl: 'modal.component.html',
-  styleUrls: ['modal.component.css']
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
   title: string;

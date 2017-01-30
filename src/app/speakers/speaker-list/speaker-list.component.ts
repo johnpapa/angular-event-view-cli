@@ -8,8 +8,8 @@ import { FilterTextService } from '../../shared/filter-text/filter-text.service'
 @Component({
   moduleId: module.id,
   selector: 'ev-speaker-list',
-  templateUrl: 'speaker-list.component.html',
-  styleUrls: ['speaker-list.component.css'],
+  templateUrl: './speaker-list.component.html',
+  styleUrls: ['./speaker-list.component.css'],
 })
 export class SpeakerListComponent implements OnDestroy, OnInit {
   private dbResetSubscription: Subscription;

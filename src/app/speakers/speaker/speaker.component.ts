@@ -8,8 +8,8 @@ import { CanComponentDeactivate, EntityService, ModalService, ToastService } fro
 @Component({
   moduleId: module.id,
   selector: 'ev-speaker',
-  templateUrl: 'speaker.component.html',
-  styleUrls: ['speaker.component.css']
+  templateUrl: './speaker.component.html',
+  styleUrls: ['./speaker.component.css']
 })
 export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactivate {
   @Input() speaker: Speaker;
