@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { AdminRoutingModule, routedComponents }   from './admin-routing.module';
+import { AdminRoutingModule, routedComponents } from './admin-routing.module';
 
 @NgModule({
   imports: [AdminRoutingModule],

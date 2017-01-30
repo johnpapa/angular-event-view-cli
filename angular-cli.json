@@ -18,9 +18,15 @@
       "prefix": "ev",
       "mobile": false,
       "styles": [
+        "assets/material.min.css",
+        "assets/sprite-av-white.css",
+        "assets/animate.css",
+        "assets/app.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/material.min.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

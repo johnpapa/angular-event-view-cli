@@ -21,8 +21,8 @@ export class CanDeactivateGuard implements CanDeactivate<CanComponentDeactivate>
   }
 
   private toObservable(deactivate: Promise<boolean> | boolean ): Observable<boolean> | boolean {
-    let p = Promise.resolve(deactivate);
-    let o = Observable.fromPromise(p);
+    const p = Promise.resolve(deactivate);
+    const o = Observable.fromPromise(p);
     return o;
   }
 }

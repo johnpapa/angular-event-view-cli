@@ -40,7 +40,7 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   delete() {
-    let msg = `Do you want to delete ${this.speaker.name}?`;
+    const msg = `Do you want to delete ${this.speaker.name}?`;
     this.modalService.activate(msg).then(responseOK => {
       if (responseOK) {
         this.cancel(false);

@@ -33,7 +33,7 @@ export class LoginComponent implements OnDestroy {
       .subscribe(redirectTo => {
         this.toastService.activate(`Successfully logged in`);
         if (this.userProfileService.isLoggedIn) {
-          let url = redirectTo ? [redirectTo] : [ '/dashboard' ];
+          const url = redirectTo ? [redirectTo] : [ '/dashboard' ];
           this.router.navigate(url);
         }
       });

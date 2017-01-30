@@ -13,7 +13,7 @@ export class SessionResolver implements Resolve<Session> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.sessionService.getSession(id)
       .map(session => {
         if (session) {

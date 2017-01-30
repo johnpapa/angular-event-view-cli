@@ -18,7 +18,7 @@ export class MessageService {
   constructor(private http: Http, private toastService: ToastService) { }
 
   resetDb() {
-    let msg = 'Reset the Data Successfully';
+    const msg = 'Reset the Data Successfully';
     this.http.post(CONFIG.baseUrls.resetDb, null)
       .subscribe(() => {
         this.subject.next({ message: msg });

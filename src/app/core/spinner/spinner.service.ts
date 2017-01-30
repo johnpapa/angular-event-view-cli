@@ -13,7 +13,7 @@ export class SpinnerService {
 
   constructor(@Optional() @SkipSelf() prior: SpinnerService) {
     if (prior) { return prior; }
-    console.log("created spinner service")
+    console.log('created spinner service');
   }
 
   show() {

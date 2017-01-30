@@ -13,6 +13,6 @@ import { ToastService } from './toast.service';
 })
 export class ToastModule {
   constructor(@Optional() @SkipSelf() parentModule: ToastModule) {
-    throwIfAlreadyLoaded(parentModule, 'ToastModule')
+    throwIfAlreadyLoaded(parentModule, 'ToastModule');
   }
 }

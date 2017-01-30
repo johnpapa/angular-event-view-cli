@@ -2,7 +2,7 @@ import { Injectable, Optional, SkipSelf } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 export interface ToastMessage {
-  message:string
+  message: string;
 }
 
 @Injectable()
@@ -16,7 +16,7 @@ export class ToastService {
       console.log('toast service already exists');
       return prior;
     } else {
-      console.log('created toast service')
+      console.log('created toast service');
     }
   }
 

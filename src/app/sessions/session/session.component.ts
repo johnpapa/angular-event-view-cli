@@ -40,7 +40,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   delete () {
-    let msg = `Do you want to delete the ${this.session.name}?`;
+    const msg = `Do you want to delete the ${this.session.name}?`;
     this.modalService.activate(msg).then((responseOK) => {
       if (responseOK) {
         this.cancel(false);
@@ -88,7 +88,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   save() {
-    let session = this.session =
+    const session = this.session =
         this.entityService.merge(this.session, this.editSession);
     if (session.id == null) {
       this.sessionService.addSession(session).subscribe(s => {

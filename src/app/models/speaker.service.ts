@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Speaker } from './speaker.model';
 import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../core';
 
-let speakersUrl = CONFIG.baseUrls.speakers;
+const speakersUrl = CONFIG.baseUrls.speakers;
 
 @Injectable()
 export class SpeakerService {
@@ -19,7 +19,7 @@ export class SpeakerService {
   }
 
   addSpeaker(speaker: Speaker) {
-    let body = JSON.stringify(speaker);
+    const body = JSON.stringify(speaker);
     this.spinnerService.show();
     return <Observable<Speaker>>this.http
       .post(`${speakersUrl}`, body)
@@ -56,7 +56,7 @@ export class SpeakerService {
   }
 
   updateSpeaker(speaker: Speaker) {
-    let body = JSON.stringify(speaker);
+    const body = JSON.stringify(speaker);
     this.spinnerService.show();
 
     return <Observable<Speaker>>this.http
@@ -70,7 +70,7 @@ export class SpeakerService {
     if (res.status < 200 || res.status >= 300) {
       throw new Error('Bad response status: ' + res.status);
     }
-    let body = res.json ? res.json() : null;
+    const body = res.json ? res.json() : null;
     return <T>(body && body.data || {});
   }
 }

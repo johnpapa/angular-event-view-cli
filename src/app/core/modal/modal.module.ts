@@ -2,7 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { throwIfAlreadyLoaded } from '../module-import-guard';
-import { ModalComponent }   from './modal.component';
+import { ModalComponent } from './modal.component';
 import { ModalService } from './modal.service';
 
 @NgModule({
@@ -13,6 +13,6 @@ import { ModalService } from './modal.service';
 })
 export class ModalModule {
   constructor( @Optional() @SkipSelf() parentModule: ModalModule) {
-    throwIfAlreadyLoaded(parentModule, 'ModalModule')
+    throwIfAlreadyLoaded(parentModule, 'ModalModule');
   }
 }

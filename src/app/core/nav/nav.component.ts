@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
   }
 
   resetDb() {
-    let msg = 'Are you sure you want to reset the database?';
+    const msg = 'Are you sure you want to reset the database?';
     this.modalService.activate(msg).then(responseOK => {
       if (responseOK) {
         this.messageService.resetDb();

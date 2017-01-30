@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Session } from './session.model';
 import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../../core';
 
-let sessionsUrl = CONFIG.baseUrls.sessions;
+const sessionsUrl = CONFIG.baseUrls.sessions;
 
 @Injectable()
 export class SessionService {
@@ -19,7 +19,7 @@ export class SessionService {
   }
 
   addSession(session: Session) {
-    let body = JSON.stringify(session);
+    const body = JSON.stringify(session);
     this.spinnerService.show();
     return <Observable<Session>>this.http
       .post(`${sessionsUrl}`, body)
@@ -50,7 +50,7 @@ export class SessionService {
     if (res.status < 200 || res.status >= 300) {
       throw new Error('Bad response status: ' + res.status);
     }
-    let body = res.json ? res.json() : null;
+    const body = res.json ? res.json() : null;
     return <T>(body && body.data || {});
   }
 
@@ -64,7 +64,7 @@ export class SessionService {
   }
 
   updateSession(session: Session) {
-    let body = JSON.stringify(session);
+    const body = JSON.stringify(session);
     this.spinnerService.show();
 
     return <Observable<Session>>this.http
