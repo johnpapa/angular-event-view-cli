@@ -1,4 +1,4 @@
-export let CONFIG = {
+export const CONFIG = {
   baseUrls: {
     config: 'commands/config',
     resetDb: 'commands/resetDb',
