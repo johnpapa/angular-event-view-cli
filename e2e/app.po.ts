@@ -9,8 +9,24 @@ export class EventViewCliPage {
     return browser.get('/speakers');
   }
 
-  getParagraphText() {
+  navigateToSessions() {
+    return browser.get('/sessions');
+  }
+
+  navigateToAdmin() {
+    return browser.get('/admin');
+  }
+
+  navigateToLogin() {
+    return browser.get('/login');
+  }
+
+  getAppTitle() {
     return element(by.css('ev-app ev-nav h1')).getText();
+  }
+
+  getPageTitle() {
+    return element(by.css('ev-app article.template h4')).getText();
   }
 
   getDashboardButtonText(position: number) {
