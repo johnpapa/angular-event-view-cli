@@ -1,5 +1,4 @@
 import { EventViewCliPage } from './app.po';
-
 import { customMatchers, expect } from './custom-matchers';
 
 describe('event-view-cli App', () => {
@@ -8,6 +7,15 @@ describe('event-view-cli App', () => {
   beforeEach(() => {
     jasmine.addMatchers(customMatchers);
     page = new EventViewCliPage();
+  });
+
+  afterEach(function () {
+    page.getBrowserLogs().then((browserLog: any[]) => {
+      expect(browserLog.length).toEqual(0);
+      // Uncomment to actually see the log.
+      // console.log(browserLog);
+      // console.log('log: ' + require('util').inspect(browserLog));    });
+    });
   });
 
   describe('Dashboard page', () => {

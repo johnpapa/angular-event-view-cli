@@ -1,6 +1,11 @@
 import { browser, element, by } from 'protractor';
 
 export class EventViewCliPage {
+
+  getBrowserLogs() {
+    return browser.manage().logs().get('browser');
+  }
+
   navigateToDashboard() {
     return browser.get('/');
   }
