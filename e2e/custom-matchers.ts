@@ -2,10 +2,6 @@
 // declare var global: any;
 // const getDOM = __platform_browser_private__.getDOM;
 
-const _global = <any>(typeof window === 'undefined' ? global : window);
-
-export const expect: (actual: any) => NgMatchers = <any>_global.expect;
-
 /**
  * Jasmine matchers that check Angular specific conditions.
  */
@@ -13,8 +9,11 @@ export interface NgMatchers extends jasmine.Matchers {
   toEqualText(expected: string): boolean;
 }
 
+const _global = <any>(typeof window === 'undefined' ? global : window);
+export const expect: (actual: any) => NgMatchers = <any>_global.expect;
+
 export const customMatchers: jasmine.CustomMatcherFactories = {
-  toHaveText: function () {
+  toEqualText: function () {
     return {
       compare: function (actualText: string, expectedText: string) {
         // const actualText = element.getText();
