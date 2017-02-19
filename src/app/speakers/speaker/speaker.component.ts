@@ -6,7 +6,6 @@ import { Speaker, SpeakerService } from '../../models';
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
 
 @Component({
-  moduleId: module.id,
   selector: 'ev-speaker',
   templateUrl: './speaker.component.html',
   styleUrls: ['./speaker.component.css']

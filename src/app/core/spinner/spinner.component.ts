@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { SpinnerState, SpinnerService } from './spinner.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'ev-spinner',
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.css']

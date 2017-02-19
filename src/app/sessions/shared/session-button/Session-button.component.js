@@ -21,7 +21,6 @@ var SessionButtonComponent = (function () {
     ], SessionButtonComponent.prototype, "session", void 0);
     SessionButtonComponent = __decorate([
         core_1.Component({
-            moduleId: module.id,
             selector: 'ev-session-button',
             templateUrl: './session-button.component.html',
             styleUrls: ['./session-button.component.css'],

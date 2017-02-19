@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'ev-404',
   template: `
     <article class="template animated slideInRight">

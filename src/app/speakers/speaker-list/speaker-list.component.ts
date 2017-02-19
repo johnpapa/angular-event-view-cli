@@ -6,7 +6,6 @@ import { FilterTextComponent } from '../../shared/filter-text/filter-text.compon
 import { FilterTextService } from '../../shared/filter-text/filter-text.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'ev-speaker-list',
   templateUrl: './speaker-list.component.html',
   styleUrls: ['./speaker-list.component.css'],

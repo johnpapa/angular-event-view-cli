@@ -7,7 +7,6 @@ import { Speaker, SpeakerService } from '../models';
 import { ToastService } from '../core';
 
 @Component({
-  moduleId: module.id,
   selector: 'ev-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']

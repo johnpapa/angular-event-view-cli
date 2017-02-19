@@ -6,7 +6,6 @@ import { LoginService } from './login.service';
 import { ToastService, UserProfileService } from '../core';
 
 @Component({
-  moduleId: module.id,
   templateUrl: './login.component.html',
   providers: [LoginService]
 })

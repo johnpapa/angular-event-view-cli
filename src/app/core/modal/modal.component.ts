@@ -5,7 +5,6 @@ import { ModalService } from './modal.service';
 const KEY_ESC = 27;
 
 @Component({
-  moduleId: module.id,
   selector: 'ev-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
