@@ -14,7 +14,7 @@ import { PreloadSelectedModulesList } from './core/preload-strategy';
 *
 * 3. Change the module's default route path from '' to 'pathname'
 *****************************************************************/
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard', },
   {
     path: 'admin',
