@@ -3,7 +3,14 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SpyNgModuleFactoryLoader } from '@angular/router/testing';
 
-import { NgModule, DebugElement, NO_ERRORS_SCHEMA, Component, NgModuleFactoryLoader } from '@angular/core';
+import {
+  Component,
+  DebugElement,
+  NgModule,
+  NgModuleFactoryLoader,
+  NO_ERRORS_SCHEMA
+} from '@angular/core';
+
 import { Location } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
@@ -12,7 +19,7 @@ import { routes } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 @Component({
-  template: '<span>lazy-loaded</span>'
+  template: '<div>lazy-loaded</div>'
 })
 class LazyComponent { }
 
@@ -83,7 +90,7 @@ describe('AppComponent', () => {
       tick();
 
       const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('span').textContent).toContain('lazy-loaded');
+      expect(compiled.querySelector('div').textContent).toContain('lazy-loaded');
     }))
   );
 
