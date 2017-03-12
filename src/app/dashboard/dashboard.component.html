@@ -1,12 +1,12 @@
 <article class="template animated slideInRight">
-  <h4>{{title}}</h4>
-  <div>
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col"
-        *ngFor="let speaker of speakers | async;trackBy:trackBySpeakers"
+  <h4 [ngStyle.xs]="{'margin': '48px 0 16px'}">{{title}}</h4>
+  <media-query-status></media-query-status>
+    <div fxLayout="row wrap" fxLayoutAlign >
+      <div fxFlex.xs="calc(50% -16px)" fxFlex.sm="33%" fxFlex="calc(25% - 16px)"
+           ngStyle.xs="{'margin': '0.5em auto'}"
+        *ngFor="let speaker of speakers | async; trackBy:trackBySpeakers"
         (click)="gotoDetail(speaker)">
         <ev-dashboard-button [speaker]="speaker"></ev-dashboard-button>
       </div>
     </div>
-  </div>
 </article>

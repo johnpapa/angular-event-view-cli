@@ -6,7 +6,6 @@
 
 .nav-link {
   padding: 0 1em;
-  width: 100px;
   color: rgba(255,255,255,.6);
   text-align: center;
   text-decoration: none;
@@ -47,12 +46,6 @@
   position: fixed;
   right: 2em;
   top: 1em;
-}
-
-@media (max-width: 480px) {
-  #reset-button {
-    display: none
-  }
 }
 
 @media (max-width: 320px) {

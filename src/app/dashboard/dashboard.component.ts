@@ -53,4 +53,5 @@ export class DashboardComponent implements OnDestroy, OnInit {
   trackBySpeakers(index: number, speaker: Speaker) {
     return speaker.id;
   }
+
 }

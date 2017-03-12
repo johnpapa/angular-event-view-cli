@@ -2,10 +2,13 @@
   <div class="mdl-layout__header-row">
     <a class="md-title-icon" href="http://angular.io" target="_blank"><i></i></a>
     <h1 class="mdl-layout-title">Event View</h1>
-    <button id="reset-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" (click)="resetDb()">Reset Data</button>
+    <button id="reset-button"
+            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised"
+            fxShow.lt-sm="false"
+            (click)="resetDb()">Reset Data</button>
   </div>
-  <div class="mdl-navigation">
-    <a *ngFor="let item of menuItems" [routerLink]="item.link" class="nav-link"
+  <div fxLayout="row nowrap" fxLayoutAlign="start stretch">
+    <a *ngFor="let item of menuItems" [routerLink]="item.link" class="nav-link" fxFlex
     routerLinkActive="router-link-active"
     #rla="routerLinkActive"
     href="">{{item.caption}} {{ rla.isActive ? '*' : ''}}</a>

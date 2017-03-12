@@ -11,6 +11,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 // imports: imports the module's exports. which is usually declarables and providers
 // in our case the spinner has no providers.
@@ -20,7 +21,8 @@ import { ToastModule } from './toast/toast.module';
   imports: [
     CommonModule, // we use ngFor
     RouterModule, // because we use <router-outlet> and routerLink
-    ModalModule, SpinnerModule, ToastModule
+    ModalModule, SpinnerModule, ToastModule,
+    FlexLayoutModule
   ],
   exports: [ModalModule, SpinnerModule, ToastModule, NavComponent],
   declarations: [NavComponent],

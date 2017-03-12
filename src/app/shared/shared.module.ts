@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { FilterTextModule } from './filter-text/filter-text.module';
+import {FilterTextModule} from './filter-text/filter-text.module';
 
-import { InitCapsPipe } from './init-caps.pipe';
+import {InitCapsPipe} from './init-caps.pipe';
+import {MediaQueryStatus} from './media-query-status';
 
 // imports: imports the module's exports. which are usually
 // declarables(components / directives / pipes) and providers.
@@ -17,7 +18,8 @@ import { InitCapsPipe } from './init-caps.pipe';
 // will import SharedModule and will need them.
 @NgModule({
   imports: [CommonModule, FilterTextModule, FormsModule],
-  exports: [CommonModule, FilterTextModule, FormsModule, InitCapsPipe],
-  declarations: [InitCapsPipe],
+  exports: [CommonModule, FilterTextModule, FormsModule, InitCapsPipe, MediaQueryStatus],
+  declarations: [InitCapsPipe, MediaQueryStatus],
 })
-export class SharedModule { }
+export class SharedModule {
+}
