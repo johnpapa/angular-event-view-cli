@@ -1,31 +1,33 @@
-# EventViewCli
+This is a fork of John Papa's **[StoryTracker Angular CLI](https://github.com/johnpapa/angular-event-view-cli)** repository.
 
-<!--This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26 and upgraded to 32.-->
+### Adaptive UX
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This repository uses the **[@angular/flex-layout](http://www.github.com/angular/flex-layout)** library to easily support both responsive and adaptive layouts; resulting in 90% reduction in hand-crafted **`@media{...}`** CSS,
 
-## Code scaffolding
+**Adapative Dashboards**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+```html
+<div fxLayout="column" fxFlex="auto">
+  <ev-nav></ev-nav>
+  <article class="template animated slideInRight">
 
-## Build
+    <h4 [ngStyle.xs]="{'margin': '48px 0 16px'}">{{title}}</h4>
+    <media-query-status></media-query-status>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+    <div fxLayout="row wrap" fxLayoutAlign >
+      <div fxFlex.xs="calc(50% -16px)" fxFlex.sm="33%" fxFlex="calc(25% - 16px)"
+           ngStyle.xs="{'margin': '0.5em auto'}"
+        *ngFor="let speaker of speakers | async; trackBy:trackBySpeakers"
+        (click)="gotoDetail(speaker)">
+        <ev-dashboard-button [speaker]="speaker"></ev-dashboard-button>
+      </div>
+    </div>
 
-## Running unit tests
+  </article>
+</div>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<a href="https://github.com/ThomasBurleson/angular-event-view-cli/blob/master/src/app/dashboard/dashboard.component.html#L4-L6">
+![storytracker_adaptive](https://cloud.githubusercontent.com/assets/210413/23834061/d953cfaa-071d-11e7-9390-40ac52a3fbf5.png)
+</a>
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
