@@ -15,13 +15,13 @@ This repository uses the **[@angular/flex-layout](http://www.github.com/angular/
     <media-query-status></media-query-status>
 
     <div fxLayout="row wrap" fxLayoutAlign >
-      <div fxFlex.xs="calc(50% -16px)" fxFlex.sm="33%" fxFlex="calc(25% - 16px)"
-           ngStyle.xs="{'margin': '0.5em auto'}"
-        *ngFor="let speaker of speakers | async; trackBy:trackBySpeakers"
-        (click)="gotoDetail(speaker)">
-          <button ngClass="dashboard-button" ngClass.xs="mobile" ngClass.sm="tablet">
-                {{speaker.name}}
-          </button>
+      <div ngStyle.xs="{'margin': '0.5em auto'}"
+           fxFlex.xs="calc(50% -16px)" fxFlex.sm="33%" fxFlex="calc(25% - 16px)"
+           *ngFor="let speaker of speakers | async; trackBy:trackBySpeakers"
+           (click)="gotoDetail(speaker)">
+        <button ngClass="dashboard-button" ngClass.xs="mobile" ngClass.sm="tablet">
+          {{speaker.name}}
+        </button>
       </div>
     </div>
 
