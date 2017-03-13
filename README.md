@@ -19,7 +19,11 @@ This repository uses the **[@angular/flex-layout](http://www.github.com/angular/
            ngStyle.xs="{'margin': '0.5em auto'}"
         *ngFor="let speaker of speakers | async; trackBy:trackBySpeakers"
         (click)="gotoDetail(speaker)">
-        <ev-dashboard-button [speaker]="speaker"></ev-dashboard-button>
+          <button
+              class="dashboard-button"
+              ngClass.xs="mobile" ngClass.sm="tablet">
+                {{speaker.name}}
+          </button>
       </div>
     </div>
 
