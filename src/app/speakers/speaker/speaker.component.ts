@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 
 import { Speaker, SpeakerService } from '../../models';
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
