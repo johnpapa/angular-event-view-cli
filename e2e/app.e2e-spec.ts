@@ -12,9 +12,11 @@ describe('event-view-cli App', () => {
   afterEach(function () {
     page.getBrowserLogs().then((browserLog: any[]) => {
       expect(browserLog.length).toEqual(0);
-      // Uncomment to actually see the log.
-      // console.log(browserLog);
-      // console.log('log: ' + require('util').inspect(browserLog));    });
+
+      // Uncomment to see the log.
+      console.log(browserLog);
+      console.log('log: ' + require('util').inspect(browserLog));
+
     });
   });
 
@@ -44,7 +46,8 @@ describe('event-view-cli App', () => {
     });
   });
 
-  xdescribe('Admin page', () => {
+  describe('Admin page', () => {
+    pending('Disabled as we require the routing guard to be satisfied for this test');
     it('should display title', () => {
       page.navigateToAdmin();
       expect(page.getPageTitle()).toMatch(/admin/i);
