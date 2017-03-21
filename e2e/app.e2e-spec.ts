@@ -12,11 +12,9 @@ describe('event-view-cli App', () => {
   afterEach(function () {
     page.getBrowserLogs().then((browserLog: any[]) => {
       expect(browserLog.length).toEqual(0);
-
       // Uncomment to see the log.
-      console.log(browserLog);
-      console.log('log: ' + require('util').inspect(browserLog));
-
+      // console.log(browserLog);
+      // console.log('log: ' + require('util').inspect(browserLog));
     });
   });
 
