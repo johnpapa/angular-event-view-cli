@@ -30,6 +30,6 @@ This repository uses the **[@angular/flex-layout](http://www.github.com/angular/
 ```
 
 <a href="https://github.com/ThomasBurleson/angular-event-view-cli/blob/master/src/app/dashboard/dashboard.component.html#L4-L6">
-![storytracker_adaptive](https://cloud.githubusercontent.com/assets/210413/23834061/d953cfaa-071d-11e7-9390-40ac52a3fbf5.png)
+  <img src="https://cloud.githubusercontent.com/assets/210413/23834061/d953cfaa-071d-11e7-9390-40ac52a3fbf5.png">
 </a>
 
