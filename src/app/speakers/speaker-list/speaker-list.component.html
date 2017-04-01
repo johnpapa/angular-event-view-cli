@@ -6,7 +6,7 @@
   <ev-filter-text (changed)="filterChanged($event)"></ev-filter-text>
 
   <ul class="speakers">
-    <li *ngFor="let speaker of filteredSpeakers | sortSpeakers;trackBy:trackBySpeakers">
+    <li *ngFor="let speaker of filteredSpeakers;trackBy:trackBySpeakers">
 
       <ev-speaker-button [speaker]="speaker"></ev-speaker-button>
 

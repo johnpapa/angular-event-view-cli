@@ -31,7 +31,7 @@ export class SpeakerListComponent implements OnDestroy, OnInit {
       .subscribe(speakers => {
         this.speakers = this.filteredSpeakers = speakers;
         // this.filterComponent.clear();
-      });
+      })
   }
 
   ngOnDestroy() {

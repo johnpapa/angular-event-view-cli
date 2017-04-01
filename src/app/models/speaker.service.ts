@@ -45,8 +45,17 @@ export class SpeakerService {
     return <Observable<Speaker[]>>this.http
       .get(speakersUrl)
       .map(res => this.extractData<Speaker[]>(res))
+      .map(speakers => this.sortSpeakers(speakers))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
+  }
+
+  sortSpeakers(speakers: Speaker[]) {
+    return speakers.sort((a: Speaker, b: Speaker) => {
+      if (a.name < b.name) { return -1; }
+      if (a.name > b.name) { return 1; }
+      return 0;
+    });
   }
 
   getSpeaker(id: number) {
