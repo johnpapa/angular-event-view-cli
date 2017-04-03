@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Speaker, SpeakerService } from '../../models';
 import { FilterTextComponent } from '../../shared/filter-text/filter-text.component';
