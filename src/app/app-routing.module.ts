@@ -10,9 +10,10 @@ import { PreloadSelectedModulesList } from './core/preload-strategy';
 *
 * 1. Add the module and NgModule imports in `app.module.ts`
 *
-* 2. Remove the lazy load route from `app.routing.ts`
+* 2. Remove the lazy load route from `app-routing.module.ts`
 *
-* 3. Change the module's default route path from '' to 'pathname'
+* 3. Change the lazy loaded module's default route path
+*    from '' to 'pathname'
 *****************************************************************/
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard', },
