@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { SessionButtonComponent } from './shared/session-button/Session-button.component';
+import { SessionButtonComponent } from './shared/session-button/session-button.component';
 
 import { routedComponents, SessionsRoutingModule } from './sessions-routing.module';
 import { SharedModule } from '../shared/shared.module';
