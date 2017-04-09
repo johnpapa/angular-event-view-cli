@@ -19,7 +19,7 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   editSpeaker: Speaker = <Speaker>{};
 
   private dbResetSubscription: Subscription;
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
   private id: any;
 
   constructor(
@@ -65,14 +65,14 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // this.dbResetSubscription.unsubscribe();
   }
 
   ngOnInit() {
     componentHandler.upgradeDom();
     this.dbResetSubscription = this.speakerService.onDbReset
-      .takeUntil(this.destroyed)
+      .takeUntil(this.onDestroy)
       .subscribe(() => this.getSpeaker());
 
     // Could use a snapshot here, as long as the parameters do not change.

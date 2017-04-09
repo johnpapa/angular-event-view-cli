@@ -24,7 +24,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   speakers: Observable<Speaker[]>;
   title: string;
 
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
   private dbResetSubscription: Subscription;
 
   constructor(
@@ -48,7 +48,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // this.dbResetSubscription.unsubscribe();
   }
 
@@ -58,7 +58,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     });
     this.getSpeakers();
     this.dbResetSubscription = this.speakerService.onDbReset
-      .takeUntil(this.destroyed)
+      .takeUntil(this.onDestroy)
       .subscribe(() => this.getSpeakers());
   }
 

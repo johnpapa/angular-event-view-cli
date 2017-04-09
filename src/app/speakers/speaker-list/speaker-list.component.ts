@@ -18,7 +18,7 @@ export class SpeakerListComponent implements OnDestroy, OnInit {
   filteredSpeakers = this.speakers;
 
   private dbResetSubscription: Subscription;
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
 
   constructor(private speakerService: SpeakerService,
     private filterService: FilterTextService) { }
@@ -38,7 +38,7 @@ export class SpeakerListComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // this.dbResetSubscription.unsubscribe();
   }
 
@@ -46,7 +46,7 @@ export class SpeakerListComponent implements OnDestroy, OnInit {
     componentHandler.upgradeDom();
     this.getSpeakers();
     this.dbResetSubscription = this.speakerService.onDbReset
-      .takeUntil(this.destroyed)
+      .takeUntil(this.onDestroy)
       .subscribe(() => this.getSpeakers());
   }
 

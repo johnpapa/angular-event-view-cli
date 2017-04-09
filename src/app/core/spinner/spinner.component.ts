@@ -12,7 +12,7 @@ import { SpinnerState, SpinnerService } from './spinner.service';
 })
 export class SpinnerComponent implements OnDestroy, OnInit {
   visible = false;
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
 
   private spinnerStateChanged: Subscription;
 
@@ -21,12 +21,12 @@ export class SpinnerComponent implements OnDestroy, OnInit {
   ngOnInit() {
     componentHandler.upgradeDom();
     this.spinnerStateChanged = this.spinnerService.spinnerState
-      .takeUntil(this.destroyed)
+      .takeUntil(this.onDestroy)
       .subscribe((state: SpinnerState) => this.visible = state.show);
   }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // this.spinnerStateChanged.unsubscribe();
   }
 }

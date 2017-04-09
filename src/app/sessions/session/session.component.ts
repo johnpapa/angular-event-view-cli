@@ -19,7 +19,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   editSession: Session = <Session>{};
 
   private dbResetSubscription: Subscription;
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
   private id: any;
 
   constructor(private entityService: EntityService,
@@ -63,7 +63,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   isAddMode() { return isNaN(this.id); }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // this.dbResetSubscription.unsubscribe();
   }
 

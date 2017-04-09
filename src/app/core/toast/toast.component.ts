@@ -17,14 +17,14 @@ export class ToastComponent implements OnDestroy, OnInit {
   };
   private toastElement: any;
   private toastSubscription: Subscription;
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
 
   title: string;
   message: string;
 
   constructor(private toastService: ToastService) {
     this.toastSubscription = this.toastService.toastState
-      .takeUntil(this.destroyed)
+      .takeUntil(this.onDestroy)
       .subscribe((toastMessage) => {
         console.log(`activiting toast: ${toastMessage.message}`);
         this.activate(toastMessage.message);
@@ -42,7 +42,7 @@ export class ToastComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // this.toastSubscription.unsubscribe();
   }
 

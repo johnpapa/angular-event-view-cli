@@ -14,7 +14,7 @@ import { ToastService, UserProfileService } from '../core';
   providers: [LoginService]
 })
 export class LoginComponent implements OnDestroy {
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
   private loginSub: Subscription;
 
   constructor(
@@ -34,7 +34,7 @@ export class LoginComponent implements OnDestroy {
       .login()
       .mergeMap(loginResult => this.route.queryParams)
       .map(qp => qp['redirectTo'])
-      .takeUntil(this.destroyed)
+      .takeUntil(this.onDestroy)
       .subscribe(redirectTo => {
         this.toastService.activate(`Successfully logged in`);
         if (this.userProfileService.isLoggedIn) {
@@ -50,7 +50,7 @@ export class LoginComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // if (this.loginSub) {
     //   this.loginSub.unsubscribe();
     // }

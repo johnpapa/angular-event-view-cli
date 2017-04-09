@@ -18,7 +18,7 @@ export class SessionListComponent implements OnDestroy, OnInit {
   filteredSessions = this.sessions;
   @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
 
-  private destroyed: Subject<boolean> = new Subject();
+  private onDestroy = new Subject();
   private dbResetSubscription: Subscription;
 
   constructor(
@@ -47,7 +47,7 @@ export class SessionListComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.destroyed.next(true);
+    this.onDestroy.next(true);
     // this.dbResetSubscription.unsubscribe();
   }
 
@@ -55,7 +55,7 @@ export class SessionListComponent implements OnDestroy, OnInit {
     componentHandler.upgradeDom();
     this.getSessions();
     this.dbResetSubscription = this.sessionService.onDbReset
-      .takeUntil(this.destroyed)
+      .takeUntil(this.onDestroy)
       .subscribe(() => this.getSessions());
   }
 
