@@ -1,8 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/takeuntil';
 
 import { LoginService } from './login.service';
 import { ToastService, UserProfileService } from '../core';
@@ -12,6 +14,7 @@ import { ToastService, UserProfileService } from '../core';
   providers: [LoginService]
 })
 export class LoginComponent implements OnDestroy {
+  private onDestroy = new Subject();
   private loginSub: Subscription;
 
   constructor(
@@ -31,6 +34,7 @@ export class LoginComponent implements OnDestroy {
       .login()
       .mergeMap(loginResult => this.route.queryParams)
       .map(qp => qp['redirectTo'])
+      .takeUntil(this.onDestroy)
       .subscribe(redirectTo => {
         this.toastService.activate(`Successfully logged in`);
         if (this.userProfileService.isLoggedIn) {
@@ -46,8 +50,9 @@ export class LoginComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.loginSub) {
-      this.loginSub.unsubscribe();
-    }
+    this.onDestroy.next(true);
+    // if (this.loginSub) {
+    //   this.loginSub.unsubscribe();
+    // }
   }
 }

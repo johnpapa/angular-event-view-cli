@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/subscription';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeuntil';
 
 import { Speaker, SpeakerService } from '../../models';
 import { FilterTextComponent } from '../../shared/filter-text/filter-text.component';
@@ -11,11 +13,12 @@ import { FilterTextService } from '../../shared/filter-text/filter-text.service'
   styleUrls: ['./speaker-list.component.css'],
 })
 export class SpeakerListComponent implements OnDestroy, OnInit {
-  private dbResetSubscription: Subscription;
-
+  @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
   speakers: Speaker[] = [];
   filteredSpeakers = this.speakers;
-  @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
+
+  private dbResetSubscription: Subscription;
+  private onDestroy = new Subject();
 
   constructor(private speakerService: SpeakerService,
     private filterService: FilterTextService) { }
@@ -31,17 +34,19 @@ export class SpeakerListComponent implements OnDestroy, OnInit {
       .subscribe(speakers => {
         this.speakers = this.filteredSpeakers = speakers;
         // this.filterComponent.clear();
-      })
+      });
   }
 
   ngOnDestroy() {
-    this.dbResetSubscription.unsubscribe();
+    this.onDestroy.next(true);
+    // this.dbResetSubscription.unsubscribe();
   }
 
   ngOnInit() {
     componentHandler.upgradeDom();
     this.getSpeakers();
     this.dbResetSubscription = this.speakerService.onDbReset
+      .takeUntil(this.onDestroy)
       .subscribe(() => this.getSpeakers());
   }
 

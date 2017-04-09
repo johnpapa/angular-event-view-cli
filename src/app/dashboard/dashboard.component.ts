@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/takeuntil';
 
 import { Speaker, SpeakerService } from '../models';
 import { ToastService } from '../core';
@@ -22,6 +24,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   speakers: Observable<Speaker[]>;
   title: string;
 
+  private onDestroy = new Subject();
   private dbResetSubscription: Subscription;
 
   constructor(
@@ -45,7 +48,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.dbResetSubscription.unsubscribe();
+    this.onDestroy.next(true);
+    // this.dbResetSubscription.unsubscribe();
   }
 
   ngOnInit() {
@@ -54,6 +58,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     });
     this.getSpeakers();
     this.dbResetSubscription = this.speakerService.onDbReset
+      .takeUntil(this.onDestroy)
       .subscribe(() => this.getSpeakers());
   }
 
