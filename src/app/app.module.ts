@@ -4,15 +4,14 @@ import {HttpModule, RequestOptions} from '@angular/http';
 import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
-import './core/rxjs-extensions';
-import {AppComponent} from './app.component';
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryStoreService} from '../api/in-memory-store.service';
-import {AppRoutingModule} from './app-routing.module';
-import {SpeakerService} from './models';
-import {PageNotFoundComponent} from './page-not-found.component';
-import {CoreModule} from './core/core.module';
-import {LoginModule} from './login/login.module';
+import { AppComponent } from './app.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryStoreService } from '../api/in-memory-store.service';
+import { AppRoutingModule } from './app-routing.module';
+import { SpeakerService } from './models';
+import { PageNotFoundComponent } from './page-not-found.component';
+import { CoreModule } from './core/core.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   imports: [

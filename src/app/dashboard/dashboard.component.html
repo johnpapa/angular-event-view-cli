@@ -1,7 +1,7 @@
 <article class="template animated slideInRight">
   <h4 [ngStyle.xs]="{'margin': '48px 0 16px'}">{{title}}</h4>
   <media-query-status></media-query-status>
-    <div fxLayout="row wrap" fxLayoutAlign >
+    <div fxLayout="row wrap" fxLayoutAlign *ngIf="speakers | async as speakerList; else loading">
       <div fxFlex.xs="calc(50% -16px)" fxFlex.sm="33%" fxFlex="calc(25% - 16px)"
            ngStyle.xs="{'margin': '0.5em auto'}"
         *ngFor="let speaker of speakers | async; trackBy:trackBySpeakers"
@@ -9,4 +9,5 @@
         <ev-dashboard-button [speaker]="speaker"></ev-dashboard-button>
       </div>
     </div>
+  <ng-template #loading>Loading the Dashboard ...</ng-template>
 </article>

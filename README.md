@@ -1,4 +1,6 @@
-This is a fork of John Papa's **[StoryTracker Angular CLI](https://github.com/johnpapa/angular-event-view-cli)** repository.
+This is a fork of John Papa's **[Event View - Angular CLI](https://github.com/johnpapa/angular-event-view-cli)** repository.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 ### Adaptive UX
 

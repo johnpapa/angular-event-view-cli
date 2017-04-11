@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/map';
 
 import { Session } from './session.model';
 import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../../core';
@@ -42,8 +45,17 @@ export class SessionService {
     return <Observable<Session[]>>this.http
       .get(sessionsUrl)
       .map(res => this.extractData<Session[]>(res))
+      .map(sessions => this.sortSessions(sessions))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
+  }
+
+  sortSessions(sessions: Session[]) {
+    return sessions.sort((a: Session, b: Session) => {
+      if (a.name < b.name) { return -1; }
+      if (a.name > b.name) { return 1; }
+      return 0;
+    });
   }
 
   private extractData<T>(res: Response) {

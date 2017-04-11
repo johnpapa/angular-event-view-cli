@@ -1,6 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/takeuntil';
 
 import { Speaker, SpeakerService } from '../../models';
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
@@ -15,6 +19,7 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   editSpeaker: Speaker = <Speaker>{};
 
   private dbResetSubscription: Subscription;
+  private onDestroy = new Subject();
   private id: any;
 
   constructor(
@@ -60,12 +65,14 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   ngOnDestroy() {
-    this.dbResetSubscription.unsubscribe();
+    this.onDestroy.next(true);
+    // this.dbResetSubscription.unsubscribe();
   }
 
   ngOnInit() {
     componentHandler.upgradeDom();
     this.dbResetSubscription = this.speakerService.onDbReset
+      .takeUntil(this.onDestroy)
       .subscribe(() => this.getSpeaker());
 
     // Could use a snapshot here, as long as the parameters do not change.
