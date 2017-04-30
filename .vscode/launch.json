@@ -27,7 +27,7 @@
       }
     },
     {
-      "name": "Attach to Chrome to test",
+      "name": "Attach to Chrome Test",
       "type": "chrome",
       "request": "attach",
       "port": 9222,
