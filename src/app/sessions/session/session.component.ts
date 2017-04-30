@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeuntil';
 
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
 import { Session } from '../shared/session.model';
@@ -17,6 +19,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   editSession: Session = <Session>{};
 
   private dbResetSubscription: Subscription;
+  private onDestroy = new Subject();
   private id: any;
 
   constructor(private entityService: EntityService,
@@ -60,7 +63,8 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   isAddMode() { return isNaN(this.id); }
 
   ngOnDestroy() {
-    this.dbResetSubscription.unsubscribe();
+    this.onDestroy.next(true);
+    // this.dbResetSubscription.unsubscribe();
   }
 
   ngOnInit() {

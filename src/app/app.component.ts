@@ -8,6 +8,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent { }
 
-// 98x3489hp-;1#xQ
-
 
