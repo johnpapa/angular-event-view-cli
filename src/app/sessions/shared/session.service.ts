@@ -21,10 +21,10 @@ export class SessionService {
     this.messageService.state.subscribe(state => this.getSessions());
   }
 
-  addSession(session: Session) {
+  addSession(session: Session): Observable<Session> {
     const body = JSON.stringify(session);
     this.spinnerService.show();
-    return <Observable<Session>>this.http
+    return this.http
       .post(`${sessionsUrl}`, body)
       .map(res => <Session>res.json().data)
       .catch(this.exceptionService.catchBadResponse)
@@ -40,9 +40,9 @@ export class SessionService {
       .finally(() => this.spinnerService.hide());
   }
 
-  getSessions() {
+  getSessions(): Observable<Session[]> {
     this.spinnerService.show();
-    return <Observable<Session[]>>this.http
+    return this.http
       .get(sessionsUrl)
       .map(res => this.extractData<Session[]>(res))
       .map(sessions => this.sortSessions(sessions))
@@ -66,20 +66,20 @@ export class SessionService {
     return <T>(body && body.data || {});
   }
 
-  getSession(id: number) {
+  getSession(id: number): Observable<Session> {
     this.spinnerService.show();
-    return <Observable<Session>>this.http
+    return this.http
       .get(`${sessionsUrl}/${id}`)
       .map(res => this.extractData<Session>(res))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  updateSession(session: Session) {
+  updateSession(session: Session): Observable<Session> {
     const body = JSON.stringify(session);
     this.spinnerService.show();
 
-    return <Observable<Session>>this.http
+    return this.http
       .put(`${sessionsUrl}/${session.id}`, body)
       .map(res => this.extractData<Session>(res))
       .catch(this.exceptionService.catchBadResponse)

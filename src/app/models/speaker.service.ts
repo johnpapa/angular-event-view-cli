@@ -21,28 +21,28 @@ export class SpeakerService {
     this.messageService.state.subscribe(state => this.getSpeakers());
   }
 
-  addSpeaker(speaker: Speaker) {
+  addSpeaker(speaker: Speaker): Observable<Speaker> {
     const body = JSON.stringify(speaker);
     this.spinnerService.show();
-    return <Observable<Speaker>>this.http
+    return this.http
       .post(`${speakersUrl}`, body)
       .map(res => res.json().data)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  deleteSpeaker(speaker: Speaker) {
+  deleteSpeaker(speaker: Speaker): Observable<Speaker> {
     this.spinnerService.show();
-    return <Observable<Speaker>>this.http
+    return this.http
       .delete(`${speakersUrl}/${speaker.id}`)
       .map(res => this.extractData<Speaker>(res))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  getSpeakers() {
+  getSpeakers(): Observable<Speaker[]> {
     this.spinnerService.show();
-    return <Observable<Speaker[]>>this.http
+    return this.http
       .get(speakersUrl)
       .map(res => this.extractData<Speaker[]>(res))
       .map(speakers => this.sortSpeakers(speakers))
@@ -60,18 +60,18 @@ export class SpeakerService {
 
   getSpeaker(id: number) {
     this.spinnerService.show();
-    return <Observable<Speaker>>this.http
+    return this.http
       .get(`${speakersUrl}/${id}`)
       .map(res => this.extractData<Speaker>(res))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
 
-  updateSpeaker(speaker: Speaker) {
+  updateSpeaker(speaker: Speaker): Observable<Speaker> {
     const body = JSON.stringify(speaker);
     this.spinnerService.show();
 
-    return <Observable<Speaker>>this.http
+    return this.http
       .put(`${speakersUrl}/${speaker.id}`, body)
       .map(res => this.extractData<Speaker>(res))
       .catch(this.exceptionService.catchBadResponse)
