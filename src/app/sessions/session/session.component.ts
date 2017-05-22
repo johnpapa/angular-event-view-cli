@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeuntil';
+import 'rxjs/add/operator/takeUntil';
 
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
 import { Session } from '../shared/session.model';

@@ -3,7 +3,7 @@ import { ToastService } from './toast.service';
 
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeuntil';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'ev-toast',

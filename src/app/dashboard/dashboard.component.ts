@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/takeuntil';
+import 'rxjs/add/operator/takeUntil';
 
 import { Speaker, SpeakerService } from '../models';
 import { ToastService } from '../core';

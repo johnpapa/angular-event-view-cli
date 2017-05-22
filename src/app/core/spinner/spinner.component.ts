@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeuntil';
+import 'rxjs/add/operator/takeUntil';
 
 import { SpinnerState, SpinnerService } from './spinner.service';
 

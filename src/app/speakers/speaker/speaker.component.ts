@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/takeuntil';
+import 'rxjs/add/operator/takeUntil';
 
 import { Speaker, SpeakerService } from '../../models';
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
