@@ -78,7 +78,6 @@ export class SpeakerService {
 
     return this.http
       .put<Speaker>(`${speakersUrl}/${speaker.id}`, body)
-      .map(res => res.data)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
