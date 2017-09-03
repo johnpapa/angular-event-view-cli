@@ -5,3 +5,9 @@
 .page-content {
   margin: 2em;
 }
+
+@media (max-width: 479px) {
+  .page-content {
+    margin-top: 4em;
+  }
+}
