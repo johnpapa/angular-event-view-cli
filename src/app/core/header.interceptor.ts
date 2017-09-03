@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class HeaderInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

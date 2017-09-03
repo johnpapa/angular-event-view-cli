@@ -13,8 +13,8 @@ import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
 import { AuthService } from './auth.service';
-import { AuthInterceptor } from './auth-interceptor';
-import { LogInterceptor } from './log-interceptor';
+import { HeaderInterceptor } from './header.interceptor';
+import { LogInterceptor } from './log.interceptor';
 import { SpeakerService } from './models/speaker.service';
 
 // imports: imports the module's exports. which is usually declarables and providers
@@ -35,7 +35,7 @@ import { SpeakerService } from './models/speaker.service';
     MessageService,
     AuthService,
     SpeakerService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LogInterceptor, multi: true }
   ]
 })
