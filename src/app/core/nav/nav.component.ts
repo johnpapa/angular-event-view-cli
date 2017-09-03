@@ -30,11 +30,12 @@ export class NavComponent implements OnInit {
   }
 
   resetDb() {
-    const msg = 'Are you sure you want to reset the database?';
-    this.modalService.activate(msg).then(responseOK => {
-      if (responseOK) {
-        this.messageService.resetDb();
-      }
-    });
+    console.log('*** The "Reset DB" is disabled until in memory API is re-enabled')
+    // const msg = 'Are you sure you want to reset the database?';
+    // this.modalService.activate(msg).then(responseOK => {
+    //   if (responseOK) {
+    //     this.messageService.resetDb();
+    //   }
+    // });
   }
 }
