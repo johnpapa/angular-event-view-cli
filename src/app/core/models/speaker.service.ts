@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
 
 import { Speaker } from './speaker.model';
-import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../core';
+import { CONFIG } from '../../core/config';
+import { ExceptionService } from '../exception.service';
+import { MessageService } from '../message.service';
+import { SpinnerService } from '../spinner/spinner.service';
 
 const speakersUrl = CONFIG.baseUrls.speakers;
 
@@ -14,10 +17,12 @@ const speakersUrl = CONFIG.baseUrls.speakers;
 export class SpeakerService {
   onDbReset = this.messageService.state;
 
-  constructor(private http: Http,
+  constructor(
+    private http: HttpClient,
     private exceptionService: ExceptionService,
     private messageService: MessageService,
-    private spinnerService: SpinnerService) {
+    private spinnerService: SpinnerService
+  ) {
     this.messageService.state.subscribe(state => this.getSpeakers());
   }
 
@@ -25,8 +30,7 @@ export class SpeakerService {
     const body = JSON.stringify(speaker);
     this.spinnerService.show();
     return this.http
-      .post(`${speakersUrl}`, body)
-      .map(res => res.json().data)
+      .post<Speaker>(`${speakersUrl}`, body)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
@@ -35,7 +39,6 @@ export class SpeakerService {
     this.spinnerService.show();
     return this.http
       .delete(`${speakersUrl}/${speaker.id}`)
-      .map(res => this.extractData<Speaker>(res))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
@@ -43,8 +46,7 @@ export class SpeakerService {
   getSpeakers(): Observable<Speaker[]> {
     this.spinnerService.show();
     return this.http
-      .get(speakersUrl)
-      .map(res => this.extractData<Speaker[]>(res))
+      .get<Speaker[]>(speakersUrl)
       .map(speakers => this.sortSpeakers(speakers))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
@@ -52,8 +54,12 @@ export class SpeakerService {
 
   sortSpeakers(speakers: Speaker[]) {
     return speakers.sort((a: Speaker, b: Speaker) => {
-      if (a.name < b.name) { return -1; }
-      if (a.name > b.name) { return 1; }
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
       return 0;
     });
   }
@@ -61,8 +67,7 @@ export class SpeakerService {
   getSpeaker(id: number) {
     this.spinnerService.show();
     return this.http
-      .get(`${speakersUrl}/${id}`)
-      .map(res => this.extractData<Speaker>(res))
+      .get<Speaker>(`${speakersUrl}/${id}`)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
@@ -72,17 +77,9 @@ export class SpeakerService {
     this.spinnerService.show();
 
     return this.http
-      .put(`${speakersUrl}/${speaker.id}`, body)
-      .map(res => this.extractData<Speaker>(res))
+      .put<Speaker>(`${speakersUrl}/${speaker.id}`, body)
+      .map(res => res.data)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
-  }
-
-  private extractData<T>(res: Response) {
-    if (res.status < 200 || res.status >= 300) {
-      throw new Error('Bad response status: ' + res.status);
-    }
-    const body = res.json ? res.json() : null;
-    return <T>(body && body.data || {});
   }
 }

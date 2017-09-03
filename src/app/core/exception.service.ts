@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
@@ -10,11 +10,10 @@ export class ExceptionService {
   constructor(private toastService: ToastService) { }
 
   catchBadResponse: (errorResponse: any) => Observable<any> = (errorResponse: any) => {
-    const res = <Response>errorResponse;
-    const err = res.json();
+    const err = <HttpErrorResponse>errorResponse;
     const emsg = err ?
       (err.error ? err.error : JSON.stringify(err)) :
-      (res.statusText || 'unknown error');
+      (err.statusText || 'unknown error');
     this.toastService.activate(`Error - Bad Response - ${emsg}`);
     // return Observable.throw(emsg); // TODO: We should NOT swallow error here.
     return Observable.of(false);

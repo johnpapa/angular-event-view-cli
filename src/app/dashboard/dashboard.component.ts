@@ -8,8 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/takeUntil';
 
-import { Speaker, SpeakerService } from '../models';
-import { ToastService } from '../core';
+import { Speaker, SpeakerService, ToastService } from '../core';
 
 @Component({
   selector: 'ev-dashboard',
@@ -31,10 +30,12 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private route: ActivatedRoute,
     private speakerService: SpeakerService,
     private router: Router,
-    private toastService: ToastService) { }
+    private toastService: ToastService
+  ) {}
 
   getSpeakers() {
-    this.speakers = this.speakerService.getSpeakers()
+    this.speakers = this.speakerService
+      .getSpeakers()
       .do(() => this.toastService.activate('Got speakers for the dashboard'))
       .catch(e => {
         this.toastService.activate(`${e}`);

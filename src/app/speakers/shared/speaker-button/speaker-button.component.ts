@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Speaker } from '../../../models';
+import { Speaker } from '../../../core';
 
 @Component({
   selector: 'ev-speaker-button',

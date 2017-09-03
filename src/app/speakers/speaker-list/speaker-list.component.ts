@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
 
-import { Speaker, SpeakerService } from '../../models';
+import { Speaker, SpeakerService } from '../../core';
 import { FilterTextComponent } from '../../shared/filter-text/filter-text.component';
 import { FilterTextService } from '../../shared/filter-text/filter-text.service';
 

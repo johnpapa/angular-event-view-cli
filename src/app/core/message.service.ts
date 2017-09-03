@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 
 import { CONFIG } from './config';
@@ -15,14 +15,13 @@ export class MessageService {
 
   state = this.subject;
 
-  constructor(private http: Http, private toastService: ToastService) { }
+  constructor(private http: HttpClient, private toastService: ToastService) {}
 
   resetDb() {
     const msg = 'Reset the Data Successfully';
-    this.http.post(CONFIG.baseUrls.resetDb, null)
-      .subscribe(() => {
-        this.subject.next({ message: msg });
-        this.toastService.activate(msg);
-      });
+    this.http.post(CONFIG.baseUrls.resetDb, null).subscribe(() => {
+      this.subject.next({ message: msg });
+      this.toastService.activate(msg);
+    });
   }
 }

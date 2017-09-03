@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { EntityService } from './entity.service';
 import { ExceptionService } from './exception.service';
@@ -11,6 +12,10 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
+import { AuthService } from './auth.service';
+import { AuthInterceptor } from './auth-interceptor';
+import { LogInterceptor } from './log-interceptor';
+import { SpeakerService } from './models/speaker.service';
 
 // imports: imports the module's exports. which is usually declarables and providers
 // in our case the spinner has no providers.
@@ -24,7 +29,15 @@ import { ToastModule } from './toast/toast.module';
   ],
   exports: [ModalModule, SpinnerModule, ToastModule, NavComponent],
   declarations: [NavComponent],
-  providers: [EntityService, ExceptionService, MessageService ]
+  providers: [
+    EntityService,
+    ExceptionService,
+    MessageService,
+    AuthService,
+    SpeakerService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LogInterceptor, multi: true }
+  ]
 })
 export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

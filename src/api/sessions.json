@@ -1,0 +1,57 @@
+[
+  {
+    "id": 130,
+    "name": "Angular2 First Look",
+    "level": "beginner"
+  },
+  {
+    "id": 132,
+    "name": "RxJS",
+    "level": "beginner"
+  },
+  {
+    "id": 133,
+    "name": "Angular Material",
+    "level": "beginner"
+  },
+  {
+    "id": 134,
+    "name": "Redux",
+    "level": "beginner"
+  },
+  {
+    "id": 135,
+    "name": "React",
+    "level": "beginner"
+  },
+  {
+    "id": 136,
+    "name": "TypeScript",
+    "level": "beginner"
+  },
+  {
+    "id": 137,
+    "name": "ES2015",
+    "level": "beginner"
+  },
+  {
+    "id": 138,
+    "name": "Mongo",
+    "level": "beginner"
+  },
+  {
+    "id": 139,
+    "name": "Redis",
+    "level": "beginner"
+  },
+  {
+    "id": 140,
+    "name": "Node",
+    "level": "beginner"
+  },
+  {
+    "id": 141,
+    "name": "Express",
+    "level": "beginner"
+  }
+]

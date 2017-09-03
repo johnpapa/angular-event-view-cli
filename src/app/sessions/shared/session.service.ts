@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
@@ -14,10 +14,12 @@ const sessionsUrl = CONFIG.baseUrls.sessions;
 export class SessionService {
   onDbReset = this.messageService.state;
 
-  constructor(private http: Http,
+  constructor(
+    private http: HttpClient,
     private exceptionService: ExceptionService,
     private messageService: MessageService,
-    private spinnerService: SpinnerService) {
+    private spinnerService: SpinnerService
+  ) {
     this.messageService.state.subscribe(state => this.getSessions());
   }
 
@@ -25,8 +27,7 @@ export class SessionService {
     const body = JSON.stringify(session);
     this.spinnerService.show();
     return this.http
-      .post(`${sessionsUrl}`, body)
-      .map(res => <Session>res.json().data)
+      .post<Session>(`${sessionsUrl}`, body)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
@@ -35,7 +36,6 @@ export class SessionService {
     this.spinnerService.show();
     return <Observable<Session>>this.http
       .delete(`${sessionsUrl}/${session.id}`)
-      .map(res => this.extractData<Session>(res))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
@@ -43,8 +43,7 @@ export class SessionService {
   getSessions(): Observable<Session[]> {
     this.spinnerService.show();
     return this.http
-      .get(sessionsUrl)
-      .map(res => this.extractData<Session[]>(res))
+      .get<Session[]>(sessionsUrl)
       .map(sessions => this.sortSessions(sessions))
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
@@ -52,25 +51,20 @@ export class SessionService {
 
   sortSessions(sessions: Session[]) {
     return sessions.sort((a: Session, b: Session) => {
-      if (a.name < b.name) { return -1; }
-      if (a.name > b.name) { return 1; }
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
       return 0;
     });
-  }
-
-  private extractData<T>(res: Response) {
-    if (res.status < 200 || res.status >= 300) {
-      throw new Error('Bad response status: ' + res.status);
-    }
-    const body = res.json ? res.json() : null;
-    return <T>(body && body.data || {});
   }
 
   getSession(id: number): Observable<Session> {
     this.spinnerService.show();
     return this.http
-      .get(`${sessionsUrl}/${id}`)
-      .map(res => this.extractData<Session>(res))
+      .get<Session>(`${sessionsUrl}/${id}`)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }
@@ -80,8 +74,7 @@ export class SessionService {
     this.spinnerService.show();
 
     return this.http
-      .put(`${sessionsUrl}/${session.id}`, body)
-      .map(res => this.extractData<Session>(res))
+      .put<Session>(`${sessionsUrl}/${session.id}`, body)
       .catch(this.exceptionService.catchBadResponse)
       .finally(() => this.spinnerService.hide());
   }

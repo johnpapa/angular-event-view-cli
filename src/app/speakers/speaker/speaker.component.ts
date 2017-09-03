@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/takeUntil';
 
-import { Speaker, SpeakerService } from '../../models';
+import { Speaker, SpeakerService } from '../../core';
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
 
 @Component({
