@@ -25,10 +25,12 @@ import { SpeakerService } from './models/speaker.service';
   imports: [
     CommonModule, // we use ngFor
     RouterModule, // because we use <router-outlet> and routerLink
-    ModalModule, SpinnerModule, ToastModule
+    ModalModule,
+    SpinnerModule,
+    ToastModule
   ],
-  exports: [ModalModule, SpinnerModule, ToastModule, NavComponent],
-  declarations: [NavComponent],
+  exports: [ModalModule, SpinnerModule, ToastModule, NavComponent],
+  declarations: [NavComponent],
   providers: [
     EntityService,
     ExceptionService,
@@ -40,7 +42,11 @@ import { SpeakerService } from './models/speaker.service';
   ]
 })
 export class CoreModule {
-  constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: CoreModule
+  ) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
   }
 }
