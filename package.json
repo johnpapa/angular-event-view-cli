@@ -10,7 +10,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "debug": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --remote-debugging-port=9222"
+    "debug": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --remote-debugging-port=9222",
+    "docker": "docker-compose up -d --build",
+    "docker-debug": "docker-compose -f docker-compose.debug.yml up -d --build",
+    "docker-down": "docker-compose down"
   },
   "private": true,
   "dependencies": {
