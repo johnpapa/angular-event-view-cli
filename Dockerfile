@@ -9,7 +9,7 @@ RUN npm install
 RUN ng build --prod --build-optimizer
 
 #nginx server =======================================
-FROM nginx:alpine as nginx-server
+FROM nginx:alpine
 LABEL authors="John Papa"
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
