@@ -2,14 +2,11 @@ version: '2.1'
 
 services:
   angular-event-view-cli:
-    image: angular-event-view-cli
-    build: .
+    image: johnpapa/angular-event-view-cli:latest
     environment:
       NODE_ENV: development
+    build: .
     ports:
-      - 3000:3000
+      - 80:80
+      - 443:443
       - 9229:9229
-    volumes:
-      - .:/usr/src/app
-    ## set your startup file here
-    command: node --inspect app.js
