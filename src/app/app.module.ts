@@ -15,9 +15,9 @@ import { LoginModule } from './login/login.module';
     BrowserModule,
     HttpClientModule,
     LoginModule,
-    // Routes get loaded in order. It is important that login
-    // come before AppRoutingModule, as
-    // AppRoutingModule defines the catch-all ** route
+    // Routes get loaded in order.
+    // It is important that login comes before AppRoutingModule,
+    // as AppRoutingModule defines the catch-all ** route
     AppRoutingModule,
     CoreModule,
     InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 600 })
