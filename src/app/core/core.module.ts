@@ -8,7 +8,7 @@ import { ExceptionService } from './exception.service';
 import { MessageService } from './message.service';
 import { NavComponent } from './nav/nav.component';
 
-import { throwIfAlreadyLoaded } from './module-import-guard';
+import { throwIfAlreadyLoaded } from './module-import-check';
 import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
