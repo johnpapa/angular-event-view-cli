@@ -14,7 +14,9 @@
     "docker": "docker-compose up -d --build",
     "docker-debug": "docker-compose -f docker-compose.debug.yml up -d --build",
     "docker-down": "docker-compose down",
-    "sme": "./node_modules/.bin/source-map-explorer"
+    "sme": "./node_modules/.bin/source-map-explorer",
+    "gen-stats": "ng build --prod --stats-json",
+    "gen-report": "webpack-bundle-analyzer dist/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -53,6 +55,7 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
     "typescript": "~2.3.3",
-    "wallaby-webpack": "~0.0.33"
+    "wallaby-webpack": "~0.0.33",
+    "webpack-bundle-analyzer": "^2.9.0"
   }
 }
