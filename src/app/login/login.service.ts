@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/of';
+import { delay, tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 
 import { SpinnerService, UserProfileService } from '../core';
 
@@ -10,17 +9,20 @@ import { SpinnerService, UserProfileService } from '../core';
 export class LoginService {
   constructor(
     private spinnerService: SpinnerService,
-    private userProfileService: UserProfileService) { }
+    private userProfileService: UserProfileService
+  ) {}
 
   login() {
-    return Observable.of(true)
-        .do(_ => this.spinnerService.show())
-        .delay(1000)
-        .do(this.toggleLogState.bind(this));
-        // .do((val: boolean) => {
-        //   this.isLoggedIn = true;
-        //   console.log(this.isLoggedIn);
-        // });
+    return of(true).pipe(
+      tap(_ => this.spinnerService.show()),
+      delay(1000),
+      tap(this.toggleLogState.bind(this))
+
+      // .do((val: boolean) => {
+      //   this.isLoggedIn = true;
+      //   console.log(this.isLoggedIn);
+      // });
+    );
   }
 
   logout() {

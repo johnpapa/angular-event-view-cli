@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeUntil';
+import { takeUntil } from 'rxjs/operators';
 
 import { SpinnerState, SpinnerService } from './spinner.service';
 
@@ -16,13 +16,13 @@ export class SpinnerComponent implements OnDestroy, OnInit {
 
   private spinnerStateChanged: Subscription;
 
-  constructor(private spinnerService: SpinnerService) { }
+  constructor(private spinnerService: SpinnerService) {}
 
   ngOnInit() {
     componentHandler.upgradeDom();
     this.spinnerStateChanged = this.spinnerService.spinnerState
-      .takeUntil(this.onDestroy)
-      .subscribe((state: SpinnerState) => this.visible = state.show);
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((state: SpinnerState) => (this.visible = state.show));
   }
 
   ngOnDestroy() {

@@ -2,9 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/takeUntil';
+import { map, tap, takeUntil } from 'rxjs/operators';
 
 import { Speaker, SpeakerService } from '../../core';
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
@@ -28,7 +26,8 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
     private route: ActivatedRoute,
     private router: Router,
     private speakerService: SpeakerService,
-    private toastService: ToastService) { }
+    private toastService: ToastService
+  ) {}
 
   cancel(showToast = true) {
     this.editSpeaker = this.entityService.clone(this.speaker);
@@ -38,9 +37,7 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   canDeactivate() {
-    return !this.speaker ||
-      !this.isDirty() ||
-      this.modalService.activate();
+    return !this.speaker || !this.isDirty() || this.modalService.activate();
   }
 
   delete() {
@@ -48,14 +45,14 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
     this.modalService.activate(msg).then(responseOK => {
       if (responseOK) {
         this.cancel(false);
-        this.speakerService.deleteSpeaker(this.speaker)
-          .subscribe(() => {
+        this.speakerService.deleteSpeaker(this.speaker).subscribe(
+          () => {
             this.toastService.activate(`Deleted ${this.speaker.name}`);
             this.gotoSpeakers();
           },
-          (err) => this.handleServiceError('Delete', err), // Failure path
+          err => this.handleServiceError('Delete', err), // Failure path
           () => console.log('Delete Completed') // Completed actions
-          );
+        );
       }
     });
   }
@@ -72,43 +69,42 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   ngOnInit() {
     componentHandler.upgradeDom();
     this.dbResetSubscription = this.speakerService.onDbReset
-      .takeUntil(this.onDestroy)
+      .pipe(takeUntil(this.onDestroy))
       .subscribe(() => this.getSpeaker());
 
     // Could use a snapshot here, as long as the parameters do not change.
     // This may happen when a component is re-used.
     // this.id = +this.route.snapshot.params['id'];
-    this.route
-      .params
-      .map(params => params['id'])
-      .do(id => this.id = +id)
+    this.route.params
+      .pipe(map(params => params['id']), tap(id => (this.id = +id)))
       .subscribe(id => this.getSpeaker());
   }
 
   save() {
-    const speaker = this.speaker = this.entityService.merge(this.speaker, this.editSpeaker);
+    const speaker = (this.speaker = this.entityService.merge(this.speaker, this.editSpeaker));
     if (speaker.id == null) {
-      this.speakerService.addSpeaker(speaker)
-        .subscribe(s => {
-          this.setEditSpeaker(s);
-          this.toastService.activate(`Successfully added ${s.name}`);
-          this.gotoSpeakers();
-        });
+      this.speakerService.addSpeaker(speaker).subscribe(s => {
+        this.setEditSpeaker(s);
+        this.toastService.activate(`Successfully added ${s.name}`);
+        this.gotoSpeakers();
+      });
       return;
     }
-    this.speakerService.updateSpeaker(speaker)
+    this.speakerService
+      .updateSpeaker(speaker)
       .subscribe(() => this.toastService.activate(`Successfully saved ${speaker.name}`));
   }
 
   private getSpeaker() {
-    if (this.id === 0) { return; };
+    if (this.id === 0) {
+      return;
+    }
     if (this.isAddMode()) {
       this.speaker = <Speaker>{ name: '', twitter: '' };
       this.editSpeaker = this.entityService.clone(this.speaker);
       return;
     }
-    this.speakerService.getSpeaker(this.id)
-      .subscribe(speaker => this.setEditSpeaker(speaker));
+    this.speakerService.getSpeaker(this.id).subscribe(speaker => this.setEditSpeaker(speaker));
   }
 
   private gotoSpeakers() {

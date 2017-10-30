@@ -3,10 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/takeUntil';
+import { catchError, tap, takeUntil } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 
 import { Speaker, SpeakerService, ToastService } from '../core';
 
@@ -34,13 +32,13 @@ export class DashboardComponent implements OnDestroy, OnInit {
   ) {}
 
   getSpeakers() {
-    this.speakers = this.speakerService
-      .getSpeakers()
-      .do(() => this.toastService.activate('Got speakers for the dashboard'))
-      .catch(e => {
+    this.speakers = this.speakerService.getSpeakers().pipe(
+      tap(() => this.toastService.activate('Got speakers for the dashboard')),
+      catchError(e => {
         this.toastService.activate(`${e}`);
-        return Observable.of([]);
-      });
+        return of([]);
+      })
+    );
   }
 
   gotoDetail(speaker: Speaker) {
@@ -59,7 +57,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     });
     this.getSpeakers();
     this.dbResetSubscription = this.speakerService.onDbReset
-      .takeUntil(this.onDestroy)
+      .pipe(takeUntil(this.onDestroy))
       .subscribe(() => this.getSpeakers());
   }
 

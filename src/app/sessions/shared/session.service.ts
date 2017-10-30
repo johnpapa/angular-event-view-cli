@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/map';
+import { catchError, finalize, map } from 'rxjs/operators';
 
 import { Session } from './session.model';
 import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../../core';
@@ -28,25 +26,31 @@ export class SessionService {
     this.spinnerService.show();
     return this.http
       .post<Session>(`${sessionsUrl}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   deleteSession(session: Session) {
     this.spinnerService.show();
     return <Observable<Session>>this.http
       .delete(`${sessionsUrl}/${session.id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   getSessions(): Observable<Session[]> {
     this.spinnerService.show();
     return this.http
       .get<Session[]>(sessionsUrl)
-      .map(sessions => this.sortSessions(sessions))
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        map(sessions => this.sortSessions(sessions)),
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   sortSessions(sessions: Session[]) {
@@ -65,8 +69,10 @@ export class SessionService {
     this.spinnerService.show();
     return this.http
       .get<Session>(`${sessionsUrl}/${id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   updateSession(session: Session): Observable<Session> {
@@ -75,7 +81,9 @@ export class SessionService {
 
     return this.http
       .put<Session>(`${sessionsUrl}/${session.id}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 }

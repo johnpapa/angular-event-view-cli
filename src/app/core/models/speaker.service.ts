@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/map';
+import { catchError, finalize, map } from 'rxjs/operators';
 
 import { Speaker } from './speaker.model';
 import { CONFIG } from '../../core/config';
@@ -31,25 +29,31 @@ export class SpeakerService {
     this.spinnerService.show();
     return this.http
       .post<Speaker>(`${speakersUrl}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   deleteSpeaker(speaker: Speaker): Observable<Speaker> {
     this.spinnerService.show();
     return this.http
       .delete(`${speakersUrl}/${speaker.id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   getSpeakers(): Observable<Speaker[]> {
     this.spinnerService.show();
     return this.http
       .get<Speaker[]>(speakersUrl)
-      .map(speakers => this.sortSpeakers(speakers))
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        map(speakers => this.sortSpeakers(speakers)),
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   sortSpeakers(speakers: Speaker[]) {
@@ -68,8 +72,10 @@ export class SpeakerService {
     this.spinnerService.show();
     return this.http
       .get<Speaker>(`${speakersUrl}/${id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 
   updateSpeaker(speaker: Speaker): Observable<Speaker> {
@@ -78,7 +84,9 @@ export class SpeakerService {
 
     return this.http
       .put<Speaker>(`${speakersUrl}/${speaker.id}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(
+        catchError(this.exceptionService.catchBadResponse),
+        finalize(() => this.spinnerService.hide())
+      );
   }
 }

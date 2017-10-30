@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeUntil';
+import { takeUntil } from 'rxjs/operators';
 
 import { FilterTextComponent } from '../../shared/filter-text/filter-text.component';
 import { FilterTextService } from '../../shared/filter-text/filter-text.service';
@@ -21,9 +21,7 @@ export class SessionListComponent implements OnDestroy, OnInit {
   private onDestroy = new Subject();
   private dbResetSubscription: Subscription;
 
-  constructor(
-    private filterService: FilterTextService,
-    private sessionService: SessionService) { }
+  constructor(private filterService: FilterTextService, private sessionService: SessionService) {}
 
   filterChanged(searchText: string) {
     const props = ['id', 'name', 'level'];
@@ -32,8 +30,8 @@ export class SessionListComponent implements OnDestroy, OnInit {
 
   getSessions() {
     this.sessions = [];
-    this.sessionService.getSessions()
-      .subscribe(sessions => {
+    this.sessionService.getSessions().subscribe(
+      sessions => {
         this.sessions = this.filteredSessions = sessions;
         this.filterComponent.clear();
       },
@@ -41,9 +39,10 @@ export class SessionListComponent implements OnDestroy, OnInit {
         console.log('error occurred here');
         console.log(error);
       },
-       () => {
+      () => {
         console.log('session retrieval completed');
-      });
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -55,7 +54,7 @@ export class SessionListComponent implements OnDestroy, OnInit {
     componentHandler.upgradeDom();
     this.getSessions();
     this.dbResetSubscription = this.sessionService.onDbReset
-      .takeUntil(this.onDestroy)
+      .pipe(takeUntil(this.onDestroy))
       .subscribe(() => this.getSessions());
   }
 

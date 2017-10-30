@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeUntil';
 
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
 import { Session } from '../shared/session.model';
@@ -80,8 +79,10 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
     // ** The ActivatedRoute gets unsubscribed
     // this.route
     //   .params
-    //   .map(params => params['id'])
-    //   .do(id => this.id = +id)
+    //   .pipe()
+    //     map(params => params['id']),
+    //     tap(id => this.id = +id)
+    //   )
     //   .subscribe(id => this.getSession());
     //
     // ** Instead we will use a Resolve(r)
