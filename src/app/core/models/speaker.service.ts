@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/map';
+import { catchError, finalize, map } from 'rxjs/operators';
 
 import { Speaker } from './speaker.model';
 import { CONFIG } from '../../core/config';
@@ -17,6 +15,13 @@ const speakersUrl = CONFIG.baseUrls.speakers;
 export class SpeakerService {
   onDbReset = this.messageService.state;
 
+  // const catchHttpErrors = () => <T>(source$: Observable<T>) =>
+  private catchHttpErrors = () => (source$: Observable<any>) =>
+    source$.pipe(
+      catchError(this.exceptionService.catchBadResponse),
+      finalize(() => this.spinnerService.hide())
+    );
+
   constructor(
     private http: HttpClient,
     private exceptionService: ExceptionService,
@@ -27,29 +32,20 @@ export class SpeakerService {
   }
 
   addSpeaker(speaker: Speaker): Observable<Speaker> {
-    const body = JSON.stringify(speaker);
     this.spinnerService.show();
-    return this.http
-      .post<Speaker>(`${speakersUrl}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+    return this.http.post<Speaker>(`${speakersUrl}`, speaker).pipe(this.catchHttpErrors());
   }
 
   deleteSpeaker(speaker: Speaker): Observable<Speaker> {
     this.spinnerService.show();
-    return this.http
-      .delete(`${speakersUrl}/${speaker.id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+    return this.http.delete(`${speakersUrl}/${speaker.id}`).pipe(this.catchHttpErrors());
   }
 
   getSpeakers(): Observable<Speaker[]> {
     this.spinnerService.show();
     return this.http
       .get<Speaker[]>(speakersUrl)
-      .map(speakers => this.sortSpeakers(speakers))
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(map(speakers => this.sortSpeakers(speakers)), this.catchHttpErrors());
   }
 
   sortSpeakers(speakers: Speaker[]) {
@@ -66,19 +62,14 @@ export class SpeakerService {
 
   getSpeaker(id: number) {
     this.spinnerService.show();
-    return this.http
-      .get<Speaker>(`${speakersUrl}/${id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+    return this.http.get<Speaker>(`${speakersUrl}/${id}`).pipe(this.catchHttpErrors());
   }
 
   updateSpeaker(speaker: Speaker): Observable<Speaker> {
-    const body = JSON.stringify(speaker);
     this.spinnerService.show();
 
     return this.http
-      .put<Speaker>(`${speakersUrl}/${speaker.id}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .put<Speaker>(`${speakersUrl}/${speaker.id}`, speaker)
+      .pipe(this.catchHttpErrors());
   }
 }

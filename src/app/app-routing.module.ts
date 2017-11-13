@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, NoPreloading, Routes, RouterModule } from '@angular/router';
+import {
+  // PreloadAllModules,
+  // NoPreloading,
+  Routes,
+  RouterModule
+} from '@angular/router';
 
 import { AuthGuard, CanDeactivateGuard, UserProfileService } from './core';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -21,7 +26,7 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule',
     canActivate: [AuthGuard],
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
@@ -29,15 +34,18 @@ export const routes: Routes = [
   },
   {
     path: 'speakers', loadChildren: 'app/speakers/speakers.module#SpeakersModule',
-    data: { preload: true }
+    // data: { preload: true }
   },
-  { path: 'sessions', loadChildren: 'app/sessions/sessions.module#SessionsModule' },
+  {
+    path: 'sessions',
+    loadChildren: 'app/sessions/sessions.module#SessionsModule'
+  },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,
-    { preloadingStrategy: PreloadAllModules }
+    { preloadingStrategy: PreloadSelectedModulesList }
   )],
   exports: [RouterModule],
   providers: [

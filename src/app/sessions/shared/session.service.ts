@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/finally';
-import 'rxjs/add/operator/map';
+import { catchError, finalize, map } from 'rxjs/operators';
 
 import { Session } from './session.model';
 import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../../core';
@@ -13,6 +11,12 @@ const sessionsUrl = CONFIG.baseUrls.sessions;
 @Injectable()
 export class SessionService {
   onDbReset = this.messageService.state;
+
+  private catchHttpErrors = () => (source$: Observable<any>) =>
+    source$.pipe(
+      catchError(this.exceptionService.catchBadResponse),
+      finalize(() => this.spinnerService.hide())
+    );
 
   constructor(
     private http: HttpClient,
@@ -24,29 +28,22 @@ export class SessionService {
   }
 
   addSession(session: Session): Observable<Session> {
-    const body = JSON.stringify(session);
     this.spinnerService.show();
-    return this.http
-      .post<Session>(`${sessionsUrl}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+    return this.http.post<Session>(`${sessionsUrl}`, session).pipe(this.catchHttpErrors());
   }
 
   deleteSession(session: Session) {
     this.spinnerService.show();
     return <Observable<Session>>this.http
       .delete(`${sessionsUrl}/${session.id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(this.catchHttpErrors());
   }
 
   getSessions(): Observable<Session[]> {
     this.spinnerService.show();
     return this.http
       .get<Session[]>(sessionsUrl)
-      .map(sessions => this.sortSessions(sessions))
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .pipe(map(sessions => this.sortSessions(sessions)), this.catchHttpErrors());
   }
 
   sortSessions(sessions: Session[]) {
@@ -63,19 +60,14 @@ export class SessionService {
 
   getSession(id: number): Observable<Session> {
     this.spinnerService.show();
-    return this.http
-      .get<Session>(`${sessionsUrl}/${id}`)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+    return this.http.get<Session>(`${sessionsUrl}/${id}`).pipe(this.catchHttpErrors());
   }
 
   updateSession(session: Session): Observable<Session> {
-    const body = JSON.stringify(session);
     this.spinnerService.show();
 
     return this.http
-      .put<Session>(`${sessionsUrl}/${session.id}`, body)
-      .catch(this.exceptionService.catchBadResponse)
-      .finally(() => this.spinnerService.hide());
+      .put<Session>(`${sessionsUrl}/${session.id}`, session)
+      .pipe(this.catchHttpErrors());
   }
 }

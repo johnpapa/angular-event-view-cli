@@ -1,4 +1,6 @@
-export class InMemoryStoreService {
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+
+export class InMemoryStoreService implements InMemoryDbService {
   /**
   * Creates fresh copy of data each time.
   * Safe for consuming service to morph arrays and objects.
@@ -17,7 +19,7 @@ export class InMemoryStoreService {
       },
       {
         'id': 13,
-        'name': 'Finn (FN2187)',
+        'name': 'Finn 123123(FN2187)',
         'twitter': '@finn'
       },
       {

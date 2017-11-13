@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+  angular-event-view-cli:
+    image: johnpapa/angular-event-view-cli:latest
+    environment:
+      NODE_ENV: production
+    build: .
+    ports:
+      - 80:80
+    - 443:443
