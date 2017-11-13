@@ -12,6 +12,12 @@ const sessionsUrl = CONFIG.baseUrls.sessions;
 export class SessionService {
   onDbReset = this.messageService.state;
 
+  private catchHttpErrors = () => (source$: Observable<any>) =>
+    source$.pipe(
+      catchError(this.exceptionService.catchBadResponse),
+      finalize(() => this.spinnerService.hide())
+    );
+
   constructor(
     private http: HttpClient,
     private exceptionService: ExceptionService,
@@ -24,33 +30,21 @@ export class SessionService {
   addSession(session: Session): Observable<Session> {
     const body = JSON.stringify(session);
     this.spinnerService.show();
-    return this.http
-      .post<Session>(`${sessionsUrl}`, body)
-      .pipe(
-        catchError(this.exceptionService.catchBadResponse),
-        finalize(() => this.spinnerService.hide())
-      );
+    return this.http.post<Session>(`${sessionsUrl}`, body).pipe(this.catchHttpErrors());
   }
 
   deleteSession(session: Session) {
     this.spinnerService.show();
     return <Observable<Session>>this.http
       .delete(`${sessionsUrl}/${session.id}`)
-      .pipe(
-        catchError(this.exceptionService.catchBadResponse),
-        finalize(() => this.spinnerService.hide())
-      );
+      .pipe(this.catchHttpErrors());
   }
 
   getSessions(): Observable<Session[]> {
     this.spinnerService.show();
     return this.http
       .get<Session[]>(sessionsUrl)
-      .pipe(
-        map(sessions => this.sortSessions(sessions)),
-        catchError(this.exceptionService.catchBadResponse),
-        finalize(() => this.spinnerService.hide())
-      );
+      .pipe(map(sessions => this.sortSessions(sessions)), this.catchHttpErrors());
   }
 
   sortSessions(sessions: Session[]) {
@@ -67,12 +61,7 @@ export class SessionService {
 
   getSession(id: number): Observable<Session> {
     this.spinnerService.show();
-    return this.http
-      .get<Session>(`${sessionsUrl}/${id}`)
-      .pipe(
-        catchError(this.exceptionService.catchBadResponse),
-        finalize(() => this.spinnerService.hide())
-      );
+    return this.http.get<Session>(`${sessionsUrl}/${id}`).pipe(this.catchHttpErrors());
   }
 
   updateSession(session: Session): Observable<Session> {
@@ -81,9 +70,6 @@ export class SessionService {
 
     return this.http
       .put<Session>(`${sessionsUrl}/${session.id}`, body)
-      .pipe(
-        catchError(this.exceptionService.catchBadResponse),
-        finalize(() => this.spinnerService.hide())
-      );
+      .pipe(this.catchHttpErrors());
   }
 }

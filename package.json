@@ -16,7 +16,7 @@
     "docker-down": "docker-compose down",
     "sme": "./node_modules/.bin/source-map-explorer",
     "gen-stats": "ng build --prod --stats-json",
-    "gen-report": "webpack-bundle-analyzer dist/stats.json"
+    "view-stats": "webpack-bundle-analyzer dist/stats.json"
   },
   "private": true,
   "dependencies": {
