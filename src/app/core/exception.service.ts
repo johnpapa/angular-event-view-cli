@@ -9,8 +9,7 @@ import { ToastService } from './toast/toast.service';
 export class ExceptionService {
   constructor(private toastService: ToastService) {}
 
-  catchBadResponse: (err: HttpErrorResponse) => Observable<any> = (err: HttpErrorResponse) => {
-  // catchBadResponse(err: HttpErrorResponse) {
+  catchBadResponse: (err: HttpErrorResponse | any) => Observable<any> = (err: any | HttpErrorResponse) => {
     let emsg = '';
 
     if (err.error instanceof Error) {
@@ -19,7 +18,7 @@ export class ExceptionService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      emsg = `Backend returned code ${err.status}, body was: ${err.error}`;
+      emsg = `Backend returned code ${err.status}, body was: ${err.body.error}`;
     }
 
     // const emsg = err

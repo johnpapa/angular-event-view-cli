@@ -28,9 +28,8 @@ export class SessionService {
   }
 
   addSession(session: Session): Observable<Session> {
-    const body = JSON.stringify(session);
     this.spinnerService.show();
-    return this.http.post<Session>(`${sessionsUrl}`, body).pipe(this.catchHttpErrors());
+    return this.http.post<Session>(`${sessionsUrl}`, session).pipe(this.catchHttpErrors());
   }
 
   deleteSession(session: Session) {
@@ -65,11 +64,10 @@ export class SessionService {
   }
 
   updateSession(session: Session): Observable<Session> {
-    const body = JSON.stringify(session);
     this.spinnerService.show();
 
     return this.http
-      .put<Session>(`${sessionsUrl}/${session.id}`, body)
+      .put<Session>(`${sessionsUrl}/${session.id}`, session)
       .pipe(this.catchHttpErrors());
   }
 }

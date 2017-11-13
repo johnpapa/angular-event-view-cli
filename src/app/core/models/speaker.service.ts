@@ -32,9 +32,8 @@ export class SpeakerService {
   }
 
   addSpeaker(speaker: Speaker): Observable<Speaker> {
-    const body = JSON.stringify(speaker);
     this.spinnerService.show();
-    return this.http.post<Speaker>(`${speakersUrl}`, body).pipe(this.catchHttpErrors());
+    return this.http.post<Speaker>(`${speakersUrl}`, speaker).pipe(this.catchHttpErrors());
   }
 
   deleteSpeaker(speaker: Speaker): Observable<Speaker> {
@@ -67,9 +66,10 @@ export class SpeakerService {
   }
 
   updateSpeaker(speaker: Speaker): Observable<Speaker> {
-    const body = JSON.stringify(speaker);
     this.spinnerService.show();
 
-    return this.http.put<Speaker>(`${speakersUrl}/${speaker.id}`, body).pipe(this.catchHttpErrors());
+    return this.http
+      .put<Speaker>(`${speakersUrl}/${speaker.id}`, speaker)
+      .pipe(this.catchHttpErrors());
   }
 }
