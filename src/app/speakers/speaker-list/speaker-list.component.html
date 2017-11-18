@@ -1,7 +1,9 @@
 <article class="template animated slideInRight">
   <h4>Speakers</h4>
 
-  <a href="" [routerLink]="['/speakers', 'new']"><button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Add</button></a>
+  <a href="" [routerLink]="['/speakers', 'new']">
+    <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Add</button>
+  </a>
 
   <ev-filter-text (changed)="filterChanged($event)"></ev-filter-text>
 

@@ -8,10 +8,10 @@ import { Session } from '../shared/session.model';
 import { SessionService } from '../shared/session.service';
 
 @Component({
-  moduleId : module.id,
-  selector : 'ev-session',
-  templateUrl : 'session.component.html',
-  styleUrls : [ 'session.component.css' ]
+  moduleId: module.id,
+  selector: 'ev-session',
+  templateUrl: 'session.component.html',
+  styleUrls: ['session.component.css']
 })
 export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactivate {
   @Input() session: Session;
@@ -21,12 +21,14 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   private onDestroy = new Subject();
   private id: any;
 
-  constructor(private entityService: EntityService,
+  constructor(
+    private entityService: EntityService,
     private modalService: ModalService,
     private route: ActivatedRoute,
     private router: Router,
     private sessionService: SessionService,
-    private toastService: ToastService) { }
+    private toastService: ToastService
+  ) {}
 
   cancel(showToast = true) {
     this.editSession = this.entityService.clone(this.session);
@@ -36,30 +38,30 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   canDeactivate() {
-    return !this.session ||
-      !this.isDirty() ||
-      this.modalService.activate();
+    return !this.session || !this.isDirty() || this.modalService.activate();
   }
 
-  delete () {
+  delete() {
     const msg = `Do you want to delete the ${this.session.name}?`;
-    this.modalService.activate(msg).then((responseOK) => {
+    this.modalService.activate(msg).then(responseOK => {
       if (responseOK) {
         this.cancel(false);
-        this.sessionService.deleteSession(this.session)
-            .subscribe(
-                () => { // Success path
-                  this.toastService.activate(`Deleted ${this.session.name}`);
-                  this.gotoSessions();
-                },
-                (err) => this.handleServiceError('Delete', err), // Failure path
-                () => console.log('Delete Completed') // Completed actions
-                );
+        this.sessionService.deleteSession(this.session).subscribe(
+          () => {
+            // Success path
+            this.toastService.activate(`Deleted ${this.session.name}`);
+            this.gotoSessions();
+          },
+          err => this.handleServiceError('Delete', err), // Failure path
+          () => console.log('Delete Completed') // Completed actions
+        );
       }
     });
   }
 
-  isAddMode() { return isNaN(this.id); }
+  isAddMode() {
+    return isNaN(this.id);
+  }
 
   ngOnDestroy() {
     this.onDestroy.next(true);
@@ -68,8 +70,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
 
   ngOnInit() {
     componentHandler.upgradeDom();
-    this.dbResetSubscription =
-        this.sessionService.onDbReset.subscribe(() => this.getSession());
+    this.dbResetSubscription = this.sessionService.onDbReset.subscribe(() => this.getSession());
 
     // ** Could use a snapshot here, as long as the parameters do not change.
     // ** This may happen when a component is re-used, such as fwd/back.
@@ -93,8 +94,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   save() {
-    const session = this.session =
-        this.entityService.merge(this.session, this.editSession);
+    const session = (this.session = this.entityService.merge(this.session, this.editSession));
     if (session.id == null) {
       this.sessionService.addSession(session).subscribe(s => {
         this.setEditSession(s);
@@ -103,22 +103,23 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
       });
       return;
     }
-    this.sessionService.updateSession(this.session)
-        .subscribe(() => this.toastService.activate(
-                       `Successfully saved ${this.session.name}`));
+    this.sessionService
+      .updateSession(this.session)
+      .subscribe(() => this.toastService.activate(`Successfully saved ${this.session.name}`));
   }
 
   private getSession() {
     if (this.id === 0) {
       return;
-    };
+    }
     if (this.isAddMode()) {
-      this.session = <Session>{name : '', level : ''};
+      this.session = <Session>{ name: '', level: '' };
       this.editSession = this.entityService.clone(this.session);
       return;
     }
-    this.sessionService.getSession(this.id).subscribe(
-        (session: Session) => this.setEditSession(session));
+    this.sessionService
+      .getSession(this.id)
+      .subscribe((session: Session) => this.setEditSession(session));
   }
 
   private gotoSessions() {

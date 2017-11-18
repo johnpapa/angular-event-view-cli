@@ -5,14 +5,12 @@ import { Speaker } from '../../../core';
 @Component({
   selector: 'ev-speaker-button',
   templateUrl: './speaker-button.component.html',
-  styleUrls: ['./speaker-button.component.css'],
+  styleUrls: ['./speaker-button.component.css']
 })
 export class SpeakerButtonComponent implements OnInit {
   @Input() speaker: Speaker;
 
   constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

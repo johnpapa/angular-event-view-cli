@@ -9,4 +9,4 @@ import { Component } from '@angular/core';
     </article>
   `
 })
-export class PageNotFoundComponent { }
+export class PageNotFoundComponent {}

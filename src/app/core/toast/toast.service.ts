@@ -11,7 +11,11 @@ export class ToastService {
 
   toastState = this.toastSubject.asObservable();
 
-  constructor(@Optional() @SkipSelf() prior: ToastService) {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    prior: ToastService
+  ) {
     if (prior) {
       console.log('toast service already exists');
       return prior;

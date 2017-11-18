@@ -17,10 +17,14 @@ import { HeaderInterceptor } from './header.interceptor';
 import { LogInterceptor } from './log.interceptor';
 import { SpeakerService } from './models/speaker.service';
 
-// imports: imports the module's exports. which is usually declarables and providers
-// in our case the spinner has no providers.
-//
-// exports: exports modules AND components/directives/pipes that other modules may want to use
+/**
+ * imports: imports the module's exports.
+ * which is usually declarables and providers
+ * in our case the spinner has no providers.
+ *
+ * exports: exports modules AND components/directives/pipes
+ * that other modules may want to use
+ */
 @NgModule({
   imports: [
     CommonModule, // we use ngFor

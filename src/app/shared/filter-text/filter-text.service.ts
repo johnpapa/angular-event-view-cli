@@ -13,11 +13,16 @@ export class FilterTextService {
       const filtered = originalList.filter(item => {
         let match = false;
         for (const prop of props) {
-          if (item[prop].toString().toLowerCase().indexOf(data) > -1) {
+          if (
+            item[prop]
+              .toString()
+              .toLowerCase()
+              .indexOf(data) > -1
+          ) {
             match = true;
             break;
           }
-        };
+        }
         return match;
       });
       filteredList = filtered;
