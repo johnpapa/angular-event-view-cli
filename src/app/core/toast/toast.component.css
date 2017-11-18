@@ -28,10 +28,10 @@
   z-index: 1;
   padding: 2px;
   position: relative;
-  background-color: rgb(255,64,129);
+  background-color: rgb(255, 64, 129);
   background-color: #f06292;
-  background-color: rgb(103,58,183);
-  background-color: rgb(83,109,254);
+  background-color: rgb(103, 58, 183);
+  background-color: rgb(83, 109, 254);
   text-align: center;
   color: white;
 }

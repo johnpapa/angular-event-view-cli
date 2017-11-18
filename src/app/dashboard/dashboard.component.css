@@ -2,7 +2,7 @@
   width: 25%;
 }
 
-@media (max-width: 839px) and (min-width: 480px){
+@media (max-width: 839px) and (min-width: 480px) {
   .mdl-cell.mdl-cell--3-col {
     width: 25%;
   }

@@ -1,14 +1,15 @@
 button {
-  width: 200px;height: 70px;
+  width: 200px;
+  height: 70px;
   /*border-bottom: rgb(83,109,254) 4px solid;*/
   /*color: #111;*/
   background-color: rgb(51, 66, 150);
-  color: #EEE;
+  color: #eee;
 }
 
 .mdl-button:hover {
-    /*background-color: rgba(158,158,158,.2);*/
-    background-color: #448aff;
+  /*background-color: rgba(158,158,158,.2);*/
+  background-color: #448aff;
 }
 
 @media (max-width: 1024px) {
