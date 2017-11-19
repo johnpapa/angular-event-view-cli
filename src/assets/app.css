@@ -16,7 +16,9 @@
   display: none;
 }
 
-.story-card { max-width: 100% }
+.story-card {
+  max-width: 100%;
+}
 
 @media (max-width: 320px) {
   .story-button {

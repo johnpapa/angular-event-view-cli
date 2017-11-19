@@ -1,6 +1,5 @@
 {
   "bracketSpacing": true,
-  "parser": "css",
   "printWidth": 100,
   "singleQuote": true,
   "tabWidth": 2
