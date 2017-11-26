@@ -19,7 +19,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(
     private userProfileService: UserProfileService,
     private toastService: ToastService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   canLoad(route: Route) {
     if (this.userProfileService.isLoggedIn) {
@@ -32,22 +33,18 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     return this.userProfileService.isLoggedIn;
   }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ) {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.userProfileService.isLoggedIn) {
       return true;
     }
-    this.router.navigate(['/login'], { queryParams: { redirectTo: state.url } });
+    this.router.navigate(['/login'], {
+      queryParams: { redirectTo: state.url }
+    });
     this.toastService.activate(this.deniedMessage);
     return false;
   }
 
-  canActivateChild(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ) {
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.canActivate(route, state);
   }
 }

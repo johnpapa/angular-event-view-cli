@@ -12,7 +12,11 @@ import { SpinnerService } from './spinner.service';
   providers: [SpinnerService]
 })
 export class SpinnerModule {
-  constructor( @Optional() @SkipSelf() parentModule: SpinnerModule) {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: SpinnerModule
+  ) {
     throwIfAlreadyLoaded(parentModule, 'SpinnerModule');
   }
 }

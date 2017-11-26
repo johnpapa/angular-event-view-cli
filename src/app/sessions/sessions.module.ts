@@ -15,4 +15,4 @@ import { SessionService } from './shared/session.service';
   // allows all features in this module to use it.
   providers: [SessionService]
 })
-export class SessionsModule { }
+export class SessionsModule {}

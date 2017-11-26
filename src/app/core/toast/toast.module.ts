@@ -12,7 +12,11 @@ import { ToastService } from './toast.service';
   providers: [ToastService]
 })
 export class ToastModule {
-  constructor(@Optional() @SkipSelf() parentModule: ToastModule) {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: ToastModule
+  ) {
     throwIfAlreadyLoaded(parentModule, 'ToastModule');
   }
 }

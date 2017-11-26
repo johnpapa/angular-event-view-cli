@@ -9,7 +9,9 @@ import { ToastService } from './toast/toast.service';
 export class ExceptionService {
   constructor(private toastService: ToastService) {}
 
-  catchBadResponse: (err: HttpErrorResponse | any) => Observable<any> = (err: any | HttpErrorResponse) => {
+  catchBadResponse: (err: HttpErrorResponse | any) => Observable<any> = (
+    err: any | HttpErrorResponse
+  ) => {
     let emsg = '';
 
     if (err.error instanceof Error) {
@@ -28,5 +30,5 @@ export class ExceptionService {
     this.toastService.activate(`Error - Bad Response - ${emsg}`);
     // return Observable.throw(emsg); // TODO: We should NOT swallow error here.
     return of(false);
-  }
+  };
 }

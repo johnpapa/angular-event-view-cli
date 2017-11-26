@@ -8,4 +8,4 @@ import { SharedModule } from '../shared/shared.module';
   imports: [SharedModule, SpeakersRoutingModule],
   declarations: [SpeakerButtonComponent, routedComponents]
 })
-export class SpeakersModule { }
+export class SpeakersModule {}

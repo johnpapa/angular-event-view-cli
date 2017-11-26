@@ -16,17 +16,17 @@ const routes: Routes = [
         path: ':id',
         component: SpeakerComponent,
         canDeactivate: [CanDeactivateGuard]
-      },
+      }
     ]
-  },
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
   // providers: [] // only put providers here we want that aren't provided yet
 })
-export class SpeakersRoutingModule { }
+export class SpeakersRoutingModule {}
 
 // This works too ... but let's be explicit, above
 // export const SpeakersRoutingModule = RouterModule.forChild(routes);

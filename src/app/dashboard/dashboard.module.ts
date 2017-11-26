@@ -8,4 +8,4 @@ import { SharedModule } from '../shared/shared.module';
   imports: [DashboardRoutingModule, SharedModule],
   declarations: [DashboardButtonComponent, routedComponents]
 })
-export class DashboardModule { }
+export class DashboardModule {}

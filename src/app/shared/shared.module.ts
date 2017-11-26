@@ -17,7 +17,7 @@ import { InitCapsPipe } from './init-caps.pipe';
 // will import SharedModule and will need them.
 @NgModule({
   imports: [CommonModule, FilterTextModule, FormsModule],
-  exports: [CommonModule, FilterTextModule, FormsModule, InitCapsPipe],
-  declarations: [InitCapsPipe],
+  exports: [CommonModule, FilterTextModule, FormsModule, InitCapsPipe],
+  declarations: [InitCapsPipe]
 })
-export class SharedModule { }
+export class SharedModule {}

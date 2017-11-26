@@ -11,4 +11,4 @@ import { FilterTextService } from './filter-text.service';
   declarations: [FilterTextComponent],
   providers: [FilterTextService]
 })
-export class FilterTextModule { }
+export class FilterTextModule {}
