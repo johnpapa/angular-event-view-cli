@@ -13,7 +13,8 @@ export class SessionResolver implements Resolve<Session> {
   constructor(private sessionService: SessionService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = +route.params['id'];
+    // const id = +route.params['id'];
+    const id = +route.paramMap.get('id');
     return this.sessionService.getSession(id).pipe(
       map(session => {
         if (session) {

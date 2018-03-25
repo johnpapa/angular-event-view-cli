@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 import { takeUntil } from 'rxjs/operators';
-
 import { FilterTextComponent } from '../../shared/filter-text/filter-text.component';
 import { FilterTextService } from '../../shared/filter-text/filter-text.service';
 import { Session } from '../shared/session.model';

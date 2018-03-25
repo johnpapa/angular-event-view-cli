@@ -74,14 +74,14 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
 
     // ** Could use a snapshot here, as long as the parameters do not change.
     // ** This may happen when a component is re-used, such as fwd/back.
-    // this.id = +this.route.snapshot.params['id'];
+    // this.id = +this.route.snapshot.paramMap.get('id');
     //
     // ** We could use a subscription to get the parameter, too.
     // ** The ActivatedRoute gets unsubscribed
     // this.route
-    //   .params
+    //   .paramMap
     //   .pipe()
-    //     map(params => params['id']),
+    //     map(params => params.get('id')),
     //     tap(id => this.id = +id)
     //   )
     //   .subscribe(id => this.getSession());

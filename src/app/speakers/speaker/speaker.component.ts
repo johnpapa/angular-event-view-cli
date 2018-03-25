@@ -74,9 +74,9 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
 
     // Could use a snapshot here, as long as the parameters do not change.
     // This may happen when a component is re-used.
-    // this.id = +this.route.snapshot.params['id'];
-    this.route.params
-      .pipe(map(params => params['id']), tap(id => (this.id = +id)))
+    // this.id = +this.route.snapshot.paramMap.get('id');
+    this.route.paramMap
+      .pipe(map(params => params.get('id')), tap(id => (this.id = +id)))
       .subscribe(id => this.getSpeaker());
   }
 
