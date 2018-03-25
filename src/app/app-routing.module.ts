@@ -41,15 +41,8 @@ export const routes: Routes = [
     loadChildren: lazyPaths.dashboard,
     data: { preload: true }
   },
-  {
-    path: 'speakers',
-    loadChildren: lazyPaths.speakers
-    // data: { preload: true }
-  },
-  {
-    path: 'sessions',
-    loadChildren: lazyPaths.sessions
-  },
+  { path: 'speakers', loadChildren: lazyPaths.speakers },
+  { path: 'sessions', loadChildren: lazyPaths.sessions },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
