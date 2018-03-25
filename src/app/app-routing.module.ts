@@ -10,6 +10,14 @@ import { AuthGuard, CanDeactivateGuard, UserProfileService } from './core';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { PreloadSelectedModulesList } from './core/preload-strategy';
 
+// Define the paths to the lazily loaded modules
+const lazyPaths = {
+  admin: 'app/admin/admin.module#AdminModule',
+  dashboard: 'app/dashboard/dashboard.module#DashboardModule',
+  speakers: 'app/speakers/speakers.module#SpeakersModule',
+  sessions: 'app/sessions/sessions.module#SessionsModule'
+};
+
 /***************************************************************
  * Lazy Loading to Eager Loading
  *
@@ -24,23 +32,23 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   {
     path: 'admin',
-    loadChildren: 'app/admin/admin.module#AdminModule',
+    loadChildren: lazyPaths.admin,
     canActivate: [AuthGuard],
     canLoad: [AuthGuard]
   },
   {
     path: 'dashboard',
-    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    loadChildren: lazyPaths.dashboard,
     data: { preload: true }
   },
   {
     path: 'speakers',
-    loadChildren: 'app/speakers/speakers.module#SpeakersModule'
+    loadChildren: lazyPaths.speakers
     // data: { preload: true }
   },
   {
     path: 'sessions',
-    loadChildren: 'app/sessions/sessions.module#SessionsModule'
+    loadChildren: lazyPaths.sessions
   },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
