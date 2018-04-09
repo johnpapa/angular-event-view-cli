@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
+import { Observable, of, Subject, Subscription } from 'rxjs';
 import { catchError, tap, takeUntil } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 import { Speaker, SpeakerService, ToastService } from '../core';
 
