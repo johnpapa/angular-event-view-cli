@@ -10,82 +10,114 @@ export class InMemoryStoreService implements InMemoryDbService {
       {
         id: 11,
         name: 'Chewbacca',
-        twitter: '@im_chewy'
+        twitter: '@im_chewy',
+        nextId: 12,
+        prevId: null
       },
       {
         id: 12,
         name: 'Rey',
-        twitter: '@rey'
+        twitter: '@rey',
+        nextId: 13,
+        prevId: 11
       },
       {
         id: 13,
         name: 'Finn 123123(FN2187)',
-        twitter: '@finn'
+        twitter: '@finn',
+        nextId: 14,
+        prevId: 12
       },
       {
         id: 14,
         name: 'Han Solo',
-        twitter: '@i_know'
+        twitter: '@i_know',
+        nextId: 15,
+        prevId: 13
       },
       {
         id: 15,
         name: 'Leia Organa',
-        twitter: '@organa'
+        twitter: '@organa',
+        nextId: 16,
+        prevId: 14
       },
       {
         id: 16,
         name: 'Luke Skywalker',
-        twitter: '@chosen_one_son'
+        twitter: '@chosen_one_son',
+        nextId: 17,
+        prevId: 15
       },
       {
         id: 17,
         name: 'Poe Dameron',
-        twitter: '@i_am_poe'
+        twitter: '@i_am_poe',
+        nextId: 18,
+        prevId: 16
       },
       {
         id: 18,
         name: 'Kylo Ren',
-        twitter: '@daddy_issues'
+        twitter: '@daddy_issues',
+        nextId: 19,
+        prevId: 17
       },
       {
         id: 19,
         name: 'Supreme Commander Snoke',
-        twitter: '@snoker'
+        twitter: '@snoker',
+        nextId: 20,
+        prevId: 18
       },
       {
         id: 20,
         name: 'R2-D2',
-        twitter: '@r2d2'
+        twitter: '@r2d2',
+        nextId: 21,
+        prevId: 19
       },
       {
         id: 21,
         name: 'BB8',
-        twitter: '@bb_eight'
+        twitter: '@bb_eight',
+        nextId: 22,
+        prevId: 20
       },
       {
         id: 22,
         name: 'C-3PO',
-        twitter: '@goldy'
+        twitter: '@goldy',
+        nextId: 23,
+        prevId: 21
       },
       {
         id: 23,
         name: 'Maz Kanata',
-        twitter: '@mazzzy'
+        twitter: '@mazzzy',
+        nextId: 24,
+        prevId: 22
       },
       {
         id: 24,
         name: 'Captain Phasma',
-        twitter: '@fazma'
+        twitter: '@fazma',
+        nextId: 25,
+        prevId: 23
       },
       {
         id: 25,
         name: 'General Hux',
-        twitter: '@hux'
+        twitter: '@hux',
+        nextId: 26,
+        prevId: 24
       },
       {
         id: 26,
         name: 'Lor San Tekka',
-        twitter: '@lor_san'
+        twitter: '@lor_san',
+        nextId: null,
+        prevId: 25
       }
     ];
 

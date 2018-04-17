@@ -15,6 +15,8 @@ import { CanComponentDeactivate, EntityService, ModalService, ToastService } fro
 export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactivate {
   @Input() speaker: Speaker;
   editSpeaker: Speaker = <Speaker>{};
+  showJSON = false;
+  toggleText = 'Show JSON';
 
   private dbResetSubscription: Subscription;
   private onDestroy = new Subject();
@@ -93,6 +95,11 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
     this.speakerService
       .updateSpeaker(speaker)
       .subscribe(() => this.toastService.activate(`Successfully saved ${speaker.name}`));
+  }
+
+  toggleJsonText() {
+    this.showJSON = !this.showJSON;
+    this.toggleText = this.showJSON ? 'Hide JSON' : 'Show JSON';
   }
 
   private getSpeaker() {

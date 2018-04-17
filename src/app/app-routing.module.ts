@@ -43,8 +43,7 @@ export const routes: Routes = [
   },
   {
     path: 'speakers',
-    loadChildren: lazyPaths.speakers,
-    canActivate: [AuthGuard]
+    loadChildren: lazyPaths.speakers
   },
   { path: 'sessions', loadChildren: lazyPaths.sessions },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }

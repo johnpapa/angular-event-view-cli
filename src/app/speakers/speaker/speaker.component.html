@@ -12,7 +12,7 @@
       <input type="text" id="twittertext" class="mdl-textfield__input" [(ngModel)]="editSpeaker.twitter" />
     </div>
 
-    <div>
+    <div class="button-bar">
       <button class="story-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
       mdl-button--accent" (click)="save()">Save</button>
       &nbsp;
@@ -20,6 +20,13 @@
       " (click)="cancel()" [class.not-displayed]="isAddMode()">Cancel</button>
       &nbsp;
       <button class="story-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="delete()" [class.not-displayed]="isAddMode()">Delete</button>
+    </div>
+
+    <div class="button-bar">
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" [routerLink]="['/speakers', speaker.prevId]" [disabled]="!speaker.prevId">prev</button>
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" [routerLink]="['/speakers', speaker.nextId]" [disabled]="!speaker.nextId">next</button>
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" (click)="toggleJsonText()">{{toggleText}}</button>
+      <pre *ngIf="showJSON">{{speaker | json}}</pre>
     </div>
 
   </div>
