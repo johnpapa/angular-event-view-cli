@@ -23,8 +23,10 @@
     </div>
 
     <div class="button-bar">
-      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" [routerLink]="['/speakers', speaker.prevId]" [disabled]="!speaker.prevId">prev</button>
-      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" [routerLink]="['/speakers', speaker.nextId]" [disabled]="!speaker.nextId">next</button>
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" [routerLink]="['/speakers', speaker.prevId]"
+        [disabled]="!speaker.prevId">prev</button>
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" [routerLink]="['/speakers', speaker.nextId]"
+        [disabled]="!speaker.nextId">next</button>
       <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised" (click)="toggleJsonText()">{{toggleText}}</button>
       <pre *ngIf="showJSON">{{speaker | json}}</pre>
     </div>

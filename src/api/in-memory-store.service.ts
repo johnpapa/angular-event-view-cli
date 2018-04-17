@@ -65,7 +65,7 @@ export class InMemoryStoreService implements InMemoryDbService {
       },
       {
         id: 19,
-        name: 'Supreme Commander Snoke',
+        name: 'Supreme Leader Snoke',
         twitter: '@snoker',
         nextId: 20,
         prevId: 18
