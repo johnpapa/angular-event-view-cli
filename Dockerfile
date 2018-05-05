@@ -6,7 +6,7 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY . /app
 RUN npm install
-RUN ng build --prod --build-optimizer
+RUN ng build --prod 
 
 #nginx server =======================================
 FROM nginx:alpine

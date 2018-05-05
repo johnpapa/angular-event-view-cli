@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-
-import { of } from 'rxjs/observable/of';
 
 import { Session } from './session.model';
 import { SessionService } from './session.service';

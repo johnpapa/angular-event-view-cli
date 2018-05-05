@@ -1,7 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
+import { Subject, Subscription } from 'rxjs';
 import { map, mergeMap, takeUntil } from 'rxjs/operators';
 
 import { LoginService } from './login.service';
