@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { ToastService } from './toast/toast.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ExceptionService {
   constructor(private toastService: ToastService) {}
 

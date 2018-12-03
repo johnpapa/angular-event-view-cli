@@ -37,11 +37,15 @@ import { SpeakerService } from './models/speaker.service';
   declarations: [NavComponent],
   providers: [
     EntityService,
-    ExceptionService,
+    // ExceptionService,
     MessageService,
     AuthService,
     SpeakerService,
-    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true
+    },
     { provide: HTTP_INTERCEPTORS, useClass: LogInterceptor, multi: true }
   ]
 })
