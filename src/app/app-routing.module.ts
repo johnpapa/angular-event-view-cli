@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import {
+  RouterModule,
   // PreloadAllModules,
   // NoPreloading,
-  Routes,
-  RouterModule
+  Routes
 } from '@angular/router';
-
 import { AuthGuard, CanDeactivateGuard, UserProfileService } from './core';
-import { PageNotFoundComponent } from './page-not-found.component';
 import { PreloadSelectedModulesList } from './core/preload-strategy';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 // Define the paths to the lazily loaded modules
 const lazyPaths = {
@@ -18,18 +17,12 @@ const lazyPaths = {
   sessions: 'app/sessions/sessions.module#SessionsModule'
 };
 
-/***************************************************************
- * Lazy Loading to Eager Loading
- *
- * 1. Add the module and NgModule imports in `app.module.ts`
- *
- * 2. Remove the lazy load route from `app-routing.module.ts`
- *
- * 3. Change the lazy loaded module's default route path
- *    from '' to 'pathname'
- *****************************************************************/
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  },
   {
     path: 'admin',
     loadChildren: lazyPaths.admin,
@@ -43,7 +36,8 @@ export const routes: Routes = [
   },
   {
     path: 'speakers',
-    loadChildren: lazyPaths.speakers
+    loadChildren: lazyPaths.speakers,
+    data: { preload: true }
   },
   { path: 'sessions', loadChildren: lazyPaths.sessions },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
@@ -59,3 +53,14 @@ export const routes: Routes = [
   providers: [AuthGuard, CanDeactivateGuard, PreloadSelectedModulesList, UserProfileService]
 })
 export class AppRoutingModule {}
+
+/***************************************************************
+ * Lazy Loading to Eager Loading
+ *
+ * 1. Add the module and NgModule imports in `app.module.ts`
+ *
+ * 2. Remove the lazy load route from `app-routing.module.ts`
+ *
+ * 3. Change the lazy loaded module's default route path
+ *    from '' to 'pathname'
+ *****************************************************************/

@@ -64,16 +64,18 @@ export class ModalComponent implements OnInit {
 
     this.cancelButton.onclick = (e: any) => {
       e.preventDefault();
-      if (!this.negativeOnClick(e)) {
-        this.hideDialog();
-      }
+      this.negativeOnClick(e);
+      // if (!this.negativeOnClick(e)) {
+      this.hideDialog();
+      // }
     };
 
     this.okButton.onclick = (e: any) => {
       e.preventDefault();
-      if (!this.positiveOnClick(e)) {
-        this.hideDialog();
-      }
+      this.positiveOnClick(e);
+      // if (!this.positiveOnClick(e)) {
+      //   this.hideDialog();
+      // }
     };
 
     this.modalElement.onclick = () => {
