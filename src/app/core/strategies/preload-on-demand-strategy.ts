@@ -1,12 +1,12 @@
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { PreloadOnDemandService, PreloadOnDemandOptions } from './preload-on-demand.service';
 
 @Injectable({ providedIn: 'root', deps: [PreloadOnDemandService] })
 export class PreloadOnDemandStrategy implements PreloadingStrategy {
-  preloadOnDemand$: Observable<PreloadOnDemandOptions>;
+  private preloadOnDemand$: Observable<PreloadOnDemandOptions>;
 
   constructor(private preloadOnDemandService: PreloadOnDemandService) {
     this.preloadOnDemand$ = this.preloadOnDemandService.state;
@@ -20,6 +20,8 @@ export class PreloadOnDemandStrategy implements PreloadingStrategy {
           route.data['preload'] &&
           [route.path, '*'].includes(preloadOptions.routePath) &&
           preloadOptions.preload;
+        console.log(`${shouldPreload ? '' : 'Not '}Preloading ${route.path}`);
+
         return shouldPreload ? load() : EMPTY;
       })
     );

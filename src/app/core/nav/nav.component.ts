@@ -35,8 +35,8 @@ export class NavComponent implements OnInit {
     this.preloadOnDemandService.startPreload('*');
   }
 
-  preloadBundle(routeLink) {
-    this.preloadOnDemandService.startPreload(routeLink);
+  preloadBundle(routePath) {
+    this.preloadOnDemandService.startPreload(routePath);
   }
 
   resetDb() {

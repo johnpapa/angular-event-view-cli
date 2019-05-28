@@ -12,21 +12,24 @@ const lazyPaths = {
   sessions: 'app/sessions/sessions.module#SessionsModule'
 };
 
+const data = { preload: true };
+
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-  { path: 'admin', loadChildren: lazyPaths.admin, canActivate: [AuthGuard], canLoad: [AuthGuard] },
-  { path: 'dashboard', loadChildren: lazyPaths.dashboard, data: { preload: true } },
-  { path: 'speakers', loadChildren: lazyPaths.speakers, data: { preload: true } },
-  { path: 'sessions', loadChildren: lazyPaths.sessions, data: { preload: true } },
+  {
+    path: 'admin',
+    loadChildren: lazyPaths.admin,
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
+  },
+  { path: 'dashboard', loadChildren: lazyPaths.dashboard, data },
+  { path: 'speakers', loadChildren: lazyPaths.speakers, data },
+  { path: 'sessions', loadChildren: lazyPaths.sessions, data },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      preloadingStrategy: PreloadOnDemandStrategy
-    })
-  ],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadOnDemandStrategy })],
   exports: [RouterModule],
   providers: [AuthGuard, CanDeactivateGuard, UserProfileService]
 })
