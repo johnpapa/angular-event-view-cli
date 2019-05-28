@@ -39,17 +39,17 @@ export class NetworkAwarePreloadStrategy implements PreloadingStrategy {
 
 @Injectable({ providedIn: 'root' })
 export class PreloadExecutioner {
-  private subject = new BehaviorSubject<string>(undefined);
-  state = this.subject;
+  private subject = new BehaviorSubject<boolean>(false);
+  state = this.subject.asObservable();
 
   makeItSo() {
-    this.subject.next('ready');
+    this.subject.next(true);
   }
 }
 
 @Injectable({ providedIn: 'root', deps: [PreloadExecutioner] })
 export class WhenReadyPreloadStrategy implements PreloadingStrategy {
-  onReady: Subject<string>;
+  onReady: Observable<boolean>;
 
   // private subject = new BehaviorSubject<boolean>(false);
   // onReady = this.subject;
