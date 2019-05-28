@@ -12,7 +12,7 @@ import {
 import { ToastService } from './toast/toast.service';
 import { UserProfileService } from './user-profile.service';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   deniedMessage = 'Unauthorized access denied';
 

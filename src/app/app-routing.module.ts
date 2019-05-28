@@ -30,8 +30,7 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadOnDemandStrategy })],
-  exports: [RouterModule],
-  providers: [AuthGuard, CanDeactivateGuard, UserProfileService]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
 

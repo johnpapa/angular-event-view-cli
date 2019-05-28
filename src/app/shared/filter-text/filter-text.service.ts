@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class FilterTextService {
   constructor() {
     console.log('Created an instance of FilterTextService');
