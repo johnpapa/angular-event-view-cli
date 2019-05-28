@@ -1,6 +1,6 @@
 # EventViewCli
 
-Angular Demo with a Little but of a lot of features
+Angular Demo with a Little bit of a lot of features
 
 ## Development server
 
