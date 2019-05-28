@@ -4,7 +4,11 @@ import { Observable, of, Subject, Subscription } from 'rxjs';
 import { catchError, tap, takeUntil } from 'rxjs/operators';
 
 import { Speaker, SpeakerService, ToastService } from '../core';
-import { WhenReadyPreloadStrategy, PreloadExecutioner } from 'app/core/preload-strategy';
+import {
+  PreloadOnDemandService,
+  PreloadOnDemandOptions
+} from 'app/core/strategies/preload-on-demand.service';
+import { PreloadOnDemandStrategy } from 'app/core/strategies/preload-on-demand-strategy';
 
 @Component({
   selector: 'ev-dashboard',
@@ -27,11 +31,11 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private speakerService: SpeakerService,
     private router: Router,
     private toastService: ToastService,
-    private preloadExecutionerService: PreloadExecutioner
+    private preloadExecutionerService: PreloadOnDemandService
   ) {}
 
   makeItSo() {
-    this.preloadExecutionerService.makeItSo();
+    this.preloadExecutionerService.startPreload('*');
   }
 
   getSpeakers() {
