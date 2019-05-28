@@ -10,7 +10,14 @@
         <ev-dashboard-button [speaker]="speaker"></ev-dashboard-button>
       </div>
     </div>
-    <button (click)="makeItSo()">make it so</button>
+    <button
+      class="story-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
+      mdl-button--accent"
+      (click)="makeItSo()"
+    >
+      make it so
+    </button>
+
     <ng-template #loading>Loading the Dashboard ...</ng-template>
   </div>
 </article>

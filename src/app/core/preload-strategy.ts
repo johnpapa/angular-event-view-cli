@@ -1,7 +1,7 @@
 import { PreloadingStrategy, Route } from '@angular/router';
-import { Observable, of, EMPTY, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, EMPTY, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { mergeMap, map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 // avoid typing issues for now
 declare var navigator;
@@ -51,20 +51,11 @@ export class PreloadExecutioner {
 export class WhenReadyPreloadStrategy implements PreloadingStrategy {
   onReady: Observable<boolean>;
 
-  // private subject = new BehaviorSubject<boolean>(false);
-  // onReady = this.subject;
-
-  // makeItSo() {
-  //   this.subject.next(true);
-  // }
-
   constructor(private preloadExecutioner: PreloadExecutioner) {
-    // constructor() {
     this.onReady = this.preloadExecutioner.state; // .subscribe(state => this.preload());
   }
 
   preload(route: Route, load: () => Observable<any>): Observable<any> {
-    // return load();
     const whenReady = this.onReady.pipe(
       switchMap((isReady, index) => {
         console.log(isReady);
@@ -72,6 +63,5 @@ export class WhenReadyPreloadStrategy implements PreloadingStrategy {
       })
     );
     return route.data && route.data['preload'] ? whenReady : EMPTY;
-    // return this.onReady.pipe(mergeMap(() => load()));
   }
 }

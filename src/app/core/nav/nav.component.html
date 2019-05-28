@@ -18,6 +18,7 @@
       routerLinkActive="router-link-active"
       #rla="routerLinkActive"
       href=""
+      (mouseover)="preloadBundle()"
       >{{ item.caption }} {{ rla.isActive ? '*' : '' }}</a
     >
   </div>

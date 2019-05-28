@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MessageService, ModalService } from '../';
+import { PreloadExecutioner } from '../preload-strategy';
 
 class MenuItem {
   constructor(public caption: string, public link: any[]) {}
@@ -24,7 +25,15 @@ export class NavComponent implements OnInit {
     ];
   }
 
-  constructor(private messageService: MessageService, private modalService: ModalService) {}
+  constructor(
+    private messageService: MessageService,
+    private modalService: ModalService,
+    private preloadExecutioner: PreloadExecutioner
+  ) {}
+
+  preloadBundle() {
+    this.preloadExecutioner.makeItSo();
+  }
 
   resetDb() {
     // console.log('*** The "Reset DB" is disabled until in memory API is re-enabled');
