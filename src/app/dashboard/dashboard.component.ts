@@ -4,11 +4,6 @@ import { Observable, of, Subject, Subscription } from 'rxjs';
 import { catchError, tap, takeUntil } from 'rxjs/operators';
 
 import { Speaker, SpeakerService, ToastService } from '../core';
-import {
-  PreloadOnDemandService,
-  PreloadOnDemandOptions
-} from 'app/core/strategies/preload-on-demand.service';
-import { PreloadOnDemandStrategy } from 'app/core/strategies/preload-on-demand-strategy';
 
 @Component({
   selector: 'ev-dashboard',
@@ -30,13 +25,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private route: ActivatedRoute,
     private speakerService: SpeakerService,
     private router: Router,
-    private toastService: ToastService,
-    private preloadExecutionerService: PreloadOnDemandService
+    private toastService: ToastService
   ) {}
-
-  makeItSo() {
-    this.preloadExecutionerService.startPreload('*');
-  }
 
   getSpeakers() {
     this.speakers$ = this.speakerService.getSpeakers().pipe(

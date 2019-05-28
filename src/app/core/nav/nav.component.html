@@ -2,13 +2,20 @@
   <div class="mdl-layout__header-row">
     <a class="md-title-icon" href="http://angular.io" target="_blank"><i></i></a>
     <h1 class="mdl-layout-title">Event View</h1>
-    <button
-      id="reset-button"
-      class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised"
-      (click)="resetDb()"
-    >
-      Reset Data
-    </button>
+    <div class="nav-buttons-right">
+      <button
+        class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised"
+        (click)="preloadAll()"
+      >
+        Preload All
+      </button>
+      <button
+        class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-button--raised"
+        (click)="resetDb()"
+      >
+        Reset Data
+      </button>
+    </div>
   </div>
   <div class="mdl-navigation">
     <a

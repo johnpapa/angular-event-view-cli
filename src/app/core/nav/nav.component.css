@@ -43,14 +43,17 @@
   background-color: #222;
 }
 
-#reset-button {
+.nav-buttons-right {
   position: fixed;
   right: 2em;
   top: 1em;
 }
+.nav-buttons-right > button {
+  margin-right: 8px;
+}
 
 @media (max-width: 480px) {
-  #reset-button {
+  #nav-buttons-right {
     display: none;
   }
 }
