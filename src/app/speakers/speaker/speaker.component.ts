@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
-import { map, tap, takeUntil } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { Speaker, SpeakerService } from '../../core';
 import { CanComponentDeactivate, EntityService, ModalService, ToastService } from '../../core';
@@ -12,13 +12,12 @@ import { CanComponentDeactivate, EntityService, ModalService, ToastService } fro
   styleUrls: ['./speaker.component.css']
 })
 export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactivate {
+  private subs: Subscription;
   @Input() speaker: Speaker;
   editSpeaker: Speaker = <Speaker>{};
   showJSON = false;
   toggleText = 'Show JSON';
 
-  private dbResetSubscription: Subscription;
-  private onDestroy = new Subject();
   private id: any;
 
   constructor(
@@ -63,21 +62,21 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   ngOnDestroy() {
-    this.onDestroy.next(true);
-    // this.dbResetSubscription.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   ngOnInit() {
     componentHandler.upgradeDom();
-    this.dbResetSubscription = this.speakerService.onDbReset
-      .pipe(takeUntil(this.onDestroy))
-      .subscribe(() => this.getSpeaker());
+    this.subs.add(this.speakerService.onDbReset.subscribe(() => this.getSpeaker()));
 
     // Could use a snapshot here, as long as the parameters do not change.
     // This may happen when a component is re-used.
     // this.id = +this.route.snapshot.paramMap.get('id');
     this.route.paramMap
-      .pipe(map(params => params.get('id')), tap(id => (this.id = +id)))
+      .pipe(
+        map(params => params.get('id')),
+        tap(id => (this.id = +id))
+      )
       .subscribe(id => this.getSpeaker());
   }
 

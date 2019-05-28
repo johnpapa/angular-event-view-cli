@@ -15,15 +15,19 @@ export class PreloadOnDemandStrategy implements PreloadingStrategy {
   preload(route: Route, load: () => Observable<any>): Observable<any> {
     return this.preloadOnDemand$.pipe(
       switchMap(preloadOptions => {
-        const shouldPreload =
-          route.data &&
-          route.data['preload'] &&
-          [route.path, '*'].includes(preloadOptions.routePath) &&
-          preloadOptions.preload;
+        const shouldPreload = this.preloadCheck(route, preloadOptions);
         console.log(`${shouldPreload ? '' : 'Not '}Preloading ${route.path}`);
-
         return shouldPreload ? load() : EMPTY;
       })
+    );
+  }
+
+  private preloadCheck(route: Route, preloadOptions: PreloadOnDemandOptions) {
+    return (
+      route.data &&
+      route.data['preload'] &&
+      [route.path, '*'].includes(preloadOptions.routePath) &&
+      preloadOptions.preload
     );
   }
 }

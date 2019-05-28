@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { FilterTextComponent } from '../../shared/filter-text/filter-text.component';
 import { FilterTextService } from '../../shared/filter-text/filter-text.service';
 import { Session } from '../shared/session.model';
@@ -12,12 +11,10 @@ import { SessionService } from '../shared/session.service';
   styleUrls: ['./session-list.component.css']
 })
 export class SessionListComponent implements OnDestroy, OnInit {
+  private subs: Subscription;
   sessions: Session[];
   filteredSessions = this.sessions;
   @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
-
-  private onDestroy = new Subject();
-  private dbResetSubscription: Subscription;
 
   constructor(private filterService: FilterTextService, private sessionService: SessionService) {}
 
@@ -44,16 +41,13 @@ export class SessionListComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.onDestroy.next(true);
-    // this.dbResetSubscription.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   ngOnInit() {
     componentHandler.upgradeDom();
     this.getSessions();
-    this.dbResetSubscription = this.sessionService.onDbReset
-      .pipe(takeUntil(this.onDestroy))
-      .subscribe(() => this.getSessions());
+    this.subs.add(this.sessionService.onDbReset.subscribe(() => this.getSessions()));
   }
 
   trackBySessions(index: number, session: Session) {
