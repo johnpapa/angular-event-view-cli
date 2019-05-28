@@ -9,7 +9,7 @@ import { Subject, Subscription } from 'rxjs';
   styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnDestroy, OnInit {
-  private subs: Subscription;
+  private subs = new Subscription();
   private defaults = {
     title: '',
     message: 'May the Force be with You'

@@ -23,7 +23,7 @@ export class InMemoryStoreService implements InMemoryDbService {
       },
       {
         id: 13,
-        name: 'Finn 123123(FN2187)',
+        name: 'Finn ',
         twitter: '@finn',
         nextId: 14,
         prevId: 12

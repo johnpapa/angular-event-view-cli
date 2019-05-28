@@ -11,7 +11,7 @@ import { ToastService, UserProfileService } from '../core';
   providers: [LoginService]
 })
 export class LoginComponent implements OnDestroy {
-  private subs: Subscription;
+  private subs = new Subscription();
 
   constructor(
     private loginService: LoginService,

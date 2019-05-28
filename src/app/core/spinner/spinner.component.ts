@@ -10,7 +10,7 @@ import { SpinnerState, SpinnerService } from './spinner.service';
 })
 export class SpinnerComponent implements OnDestroy, OnInit {
   visible = false;
-  private subs: Subscription;
+  private subs = new Subscription();
 
   constructor(private spinnerService: SpinnerService) {}
 

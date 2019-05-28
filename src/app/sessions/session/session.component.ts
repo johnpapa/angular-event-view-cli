@@ -13,7 +13,7 @@ import { SessionService } from '../shared/session.service';
   styleUrls: ['session.component.css']
 })
 export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactivate {
-  private subs: Subscription;
+  private subs = new Subscription();
   @Input() session: Session;
   editSession: Session = <Session>{};
 

@@ -12,7 +12,7 @@ import { CanComponentDeactivate, EntityService, ModalService, ToastService } fro
   styleUrls: ['./speaker.component.css']
 })
 export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactivate {
-  private subs: Subscription;
+  private subs = new Subscription();
   @Input() speaker: Speaker;
   editSpeaker: Speaker = <Speaker>{};
   showJSON = false;

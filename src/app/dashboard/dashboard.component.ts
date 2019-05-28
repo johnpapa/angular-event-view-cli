@@ -15,7 +15,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
    * Here we are using an Observable<> so we can use the async pipe in the
    * template. Whether you use the async pipe or not, be consistent.
    */
-  private subs: Subscription;
+  private subs = new Subscription();
   speakers$: Observable<Speaker[]>;
   title: string;
 

@@ -11,7 +11,7 @@ import { FilterTextService } from '../../shared/filter-text/filter-text.service'
   styleUrls: ['./speaker-list.component.css']
 })
 export class SpeakerListComponent implements OnDestroy, OnInit {
-  private subs: Subscription;
+  private subs = new Subscription();
   @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
   speakers: Speaker[] = [];
   filteredSpeakers = this.speakers;

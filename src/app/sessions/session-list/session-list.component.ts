@@ -11,7 +11,7 @@ import { SessionService } from '../shared/session.service';
   styleUrls: ['./session-list.component.css']
 })
 export class SessionListComponent implements OnDestroy, OnInit {
-  private subs: Subscription;
+  private subs = new Subscription();
   sessions: Session[];
   filteredSessions = this.sessions;
   @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
