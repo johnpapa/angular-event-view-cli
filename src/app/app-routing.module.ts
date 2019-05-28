@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, NoPreloading, Routes, PreloadAllModules } from '@angular/router';
 import { AuthGuard, CanDeactivateGuard, UserProfileService } from './core';
-import { PreloadSelectedModulesList, NetworkAwarePreloadStrategy } from './core/preload-strategy';
+import {
+  PreloadSelectedModulesList,
+  NetworkAwarePreloadStrategy,
+  WhenReadyPreloadStrategy,
+  PreloadExecutioner
+} from './core/preload-strategy';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 // Define the paths to the lazily loaded modules
@@ -31,8 +36,8 @@ export const routes: Routes = [
   },
   {
     path: 'speakers',
-    loadChildren: lazyPaths.speakers
-    // data: { preload: true }
+    loadChildren: lazyPaths.speakers,
+    data: { preload: true }
   },
   { path: 'sessions', loadChildren: lazyPaths.sessions },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
@@ -41,7 +46,7 @@ export const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      preloadingStrategy: NetworkAwarePreloadStrategy
+      preloadingStrategy: WhenReadyPreloadStrategy
     })
   ],
   exports: [RouterModule],
