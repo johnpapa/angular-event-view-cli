@@ -20,7 +20,7 @@ import { LoginModule } from './login/login.module';
     // as AppRoutingModule defines the catch-all ** route
     AppRoutingModule,
     CoreModule,
-    InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 600 })
+    InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 10 })
   ],
   declarations: [AppComponent, PageNotFoundComponent],
   bootstrap: [AppComponent]
