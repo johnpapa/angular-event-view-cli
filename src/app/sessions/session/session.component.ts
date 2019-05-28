@@ -13,11 +13,10 @@ import { SessionService } from '../shared/session.service';
   styleUrls: ['session.component.css']
 })
 export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactivate {
+  private subs = new Subscription();
   @Input() session: Session;
   editSession: Session = <Session>{};
 
-  private dbResetSubscription: Subscription;
-  private onDestroy = new Subject();
   private id: any;
 
   constructor(
@@ -63,13 +62,12 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   ngOnDestroy() {
-    this.onDestroy.next(true);
-    // this.dbResetSubscription.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   ngOnInit() {
     componentHandler.upgradeDom();
-    this.dbResetSubscription = this.sessionService.onDbReset.subscribe(() => this.getSession());
+    this.subs.add(this.sessionService.onDbReset.subscribe(() => this.getSession()));
 
     // ** Could use a snapshot here, as long as the parameters do not change.
     // ** This may happen when a component is re-used, such as fwd/back.

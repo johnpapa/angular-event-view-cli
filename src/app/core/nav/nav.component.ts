@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MessageService, ModalService } from '../';
-import { PreloadExecutioner } from '../preload-strategy';
+import { PreloadOnDemandService } from '../';
 
 class MenuItem {
-  constructor(public caption: string, public link: any[]) {}
+  constructor(public caption: string, public path: string, public link: any[]) {}
 }
 
 @Component({
@@ -17,22 +17,26 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = [
-      { caption: 'Dashboard', link: ['/dashboard'] },
-      { caption: 'Speakers', link: ['/speakers'] },
-      { caption: 'Sessions', link: ['/sessions'] },
-      { caption: 'Admin', link: ['/admin'] },
-      { caption: 'Login', link: ['/login'] }
+      { caption: 'Dashboard', path: 'dashboard', link: ['/dashboard'] },
+      { caption: 'Speakers', path: 'speakers', link: ['/speakers'] },
+      { caption: 'Sessions', path: 'sessions', link: ['/sessions'] },
+      { caption: 'Admin', path: 'admin', link: ['/admin'] },
+      { caption: 'Login', path: 'login', link: ['/login'] }
     ];
   }
 
   constructor(
     private messageService: MessageService,
     private modalService: ModalService,
-    private preloadExecutioner: PreloadExecutioner
+    private preloadOnDemandService: PreloadOnDemandService
   ) {}
 
-  preloadBundle() {
-    this.preloadExecutioner.makeItSo();
+  preloadAll() {
+    this.preloadOnDemandService.startPreload('*');
+  }
+
+  preloadBundle(routePath) {
+    this.preloadOnDemandService.startPreload(routePath);
   }
 
   resetDb() {

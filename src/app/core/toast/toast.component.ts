@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastService } from './toast.service';
 
 import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ev-toast',
@@ -10,24 +9,23 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnDestroy, OnInit {
+  private subs = new Subscription();
   private defaults = {
     title: '',
     message: 'May the Force be with You'
   };
   private toastElement: any;
-  private toastSubscription: Subscription;
-  private onDestroy = new Subject();
 
   title: string;
   message: string;
 
   constructor(private toastService: ToastService) {
-    this.toastSubscription = this.toastService.toastState
-      .pipe(takeUntil(this.onDestroy))
-      .subscribe(toastMessage => {
+    this.subs.add(
+      this.toastService.toastState.subscribe(toastMessage => {
         console.log(`activiting toast: ${toastMessage.message}`);
         this.activate(toastMessage.message);
-      });
+      })
+    );
   }
 
   activate(message = this.defaults.message, title = this.defaults.title) {
@@ -41,8 +39,7 @@ export class ToastComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.onDestroy.next(true);
-    // this.toastSubscription.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   private show() {

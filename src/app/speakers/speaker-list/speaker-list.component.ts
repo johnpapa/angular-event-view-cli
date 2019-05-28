@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { Speaker, SpeakerService } from '../../core';
 import { FilterTextComponent } from '../../shared/filter-text/filter-text.component';
@@ -12,12 +11,10 @@ import { FilterTextService } from '../../shared/filter-text/filter-text.service'
   styleUrls: ['./speaker-list.component.css']
 })
 export class SpeakerListComponent implements OnDestroy, OnInit {
+  private subs = new Subscription();
   @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
   speakers: Speaker[] = [];
   filteredSpeakers = this.speakers;
-
-  private dbResetSubscription: Subscription;
-  private onDestroy = new Subject();
 
   constructor(private speakerService: SpeakerService, private filterService: FilterTextService) {}
 
@@ -39,16 +36,13 @@ export class SpeakerListComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.onDestroy.next(true);
-    // this.dbResetSubscription.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   ngOnInit() {
     componentHandler.upgradeDom();
     this.getSpeakers();
-    this.dbResetSubscription = this.speakerService.onDbReset
-      .pipe(takeUntil(this.onDestroy))
-      .subscribe(() => this.getSpeakers());
+    this.subs.add(this.speakerService.onDbReset.subscribe(() => this.getSpeakers()));
   }
 
   trackBySpeakers(index: number, speaker: Speaker) {

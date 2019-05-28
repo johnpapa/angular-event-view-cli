@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subject, Subscription } from 'rxjs';
-import { catchError, tap, takeUntil } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { Speaker, SpeakerService, ToastService } from '../core';
-import { WhenReadyPreloadStrategy, PreloadExecutioner } from 'app/core/preload-strategy';
 
 @Component({
   selector: 'ev-dashboard',
@@ -16,23 +15,16 @@ export class DashboardComponent implements OnDestroy, OnInit {
    * Here we are using an Observable<> so we can use the async pipe in the
    * template. Whether you use the async pipe or not, be consistent.
    */
+  private subs = new Subscription();
   speakers$: Observable<Speaker[]>;
   title: string;
-
-  private onDestroy = new Subject();
-  private dbResetSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private speakerService: SpeakerService,
     private router: Router,
-    private toastService: ToastService,
-    private preloadExecutionerService: PreloadExecutioner
+    private toastService: ToastService
   ) {}
-
-  makeItSo() {
-    this.preloadExecutionerService.makeItSo();
-  }
 
   getSpeakers() {
     this.speakers$ = this.speakerService.getSpeakers().pipe(
@@ -50,8 +42,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.onDestroy.next(true);
-    // this.dbResetSubscription.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   ngOnInit() {
@@ -59,9 +50,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
       this.title = data.title;
     });
     this.getSpeakers();
-    this.dbResetSubscription = this.speakerService.onDbReset
-      .pipe(takeUntil(this.onDestroy))
-      .subscribe(() => this.getSpeakers());
+    this.subs.add(this.speakerService.onDbReset.subscribe(() => this.getSpeakers()));
   }
 
   trackBySpeakers(index: number, speaker: Speaker) {
