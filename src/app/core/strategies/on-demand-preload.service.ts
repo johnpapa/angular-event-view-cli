@@ -1,17 +1,17 @@
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-export class PreloadOnDemandOptions {
+export class OnDemandPreloadOptions {
   constructor(public routePath: string, public preload = true) {}
 }
 
 @Injectable({ providedIn: 'root' })
-export class PreloadOnDemandService {
-  private subject = new Subject<PreloadOnDemandOptions>();
+export class OnDemandPreloadService {
+  private subject = new Subject<OnDemandPreloadOptions>();
   state = this.subject.asObservable();
 
   startPreload(routePath: string) {
-    const message = new PreloadOnDemandOptions(routePath, true);
+    const message = new OnDemandPreloadOptions(routePath, true);
     this.subject.next(message);
   }
 }

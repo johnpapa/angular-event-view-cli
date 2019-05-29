@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard, CanDeactivateGuard, UserProfileService } from './core';
-import { PreloadOnDemandStrategy } from './core/strategies/preload-on-demand-strategy';
+import { OnDemandPreloadStrategy } from './core/strategies/on-demand-preload-strategy';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 // Define the paths to the lazily loaded modules
@@ -29,7 +29,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadOnDemandStrategy })],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: OnDemandPreloadStrategy })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

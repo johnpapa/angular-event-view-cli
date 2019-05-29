@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MessageService, ModalService } from '../';
-import { PreloadOnDemandService } from '../';
+import { OnDemandPreloadService } from '../';
 
 class MenuItem {
   constructor(public caption: string, public path: string, public link: any[]) {}
@@ -28,7 +28,7 @@ export class NavComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private modalService: ModalService,
-    private preloadOnDemandService: PreloadOnDemandService
+    private preloadOnDemandService: OnDemandPreloadService
   ) {}
 
   preloadAll() {
