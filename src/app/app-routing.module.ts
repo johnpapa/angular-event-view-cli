@@ -1,30 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, CanDeactivateGuard, UserProfileService } from './core';
+import { AuthGuard } from './core';
 import { OnDemandPreloadStrategy } from './core/strategies/on-demand-preload-strategy';
 import { PageNotFoundComponent } from './page-not-found.component';
-
-// Define the paths to the lazily loaded modules
-const lazyPaths = {
-  admin: () => import('app/admin/admin.module').then(m => m.AdminModule),
-  dashboard: () => import('app/dashboard/dashboard.module').then(m => m.DashboardModule),
-  speakers: () => import('app/speakers/speakers.module').then(m => m.SpeakersModule),
-  sessions: () => import('app/sessions/sessions.module').then(m => m.SessionsModule)
-};
-
-const data = { preload: true };
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   {
     path: 'admin',
-    loadChildren: lazyPaths.admin,
+    loadChildren: () => import('app/admin/admin.module').then(m => m.AdminModule),
     canActivate: [AuthGuard],
     canLoad: [AuthGuard]
   },
-  { path: 'dashboard', loadChildren: lazyPaths.dashboard, data },
-  { path: 'speakers', loadChildren: lazyPaths.speakers, data },
-  { path: 'sessions', loadChildren: lazyPaths.sessions, data },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('app/dashboard/dashboard.module').then(m => m.DashboardModule),
+    data: { preload: true }
+  },
+  {
+    path: 'speakers',
+    loadChildren: () => import('app/speakers/speakers.module').then(m => m.SpeakersModule),
+    data: { preload: true }
+  },
+  {
+    path: 'sessions',
+    loadChildren: () => import('app/sessions/sessions.module').then(m => m.SessionsModule),
+    data: { preload: true }
+  },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
