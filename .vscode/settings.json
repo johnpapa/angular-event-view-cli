@@ -4,8 +4,8 @@
     "activityBar.background": "#fcd9fe",
     "activityBar.foreground": "#15202b",
     "activityBar.inactiveForeground": "#15202b99",
-    "activityBarBadge.background": "#9b9304",
-    "activityBarBadge.foreground": "#15202b",
+    "activityBarBadge.background": "#3b74ee",
+    "activityBarBadge.foreground": "#dbdbdb",
     "statusBar.background": "#f9a8fc",
     "statusBarItem.hoverBackground": "#f677fa",
     "statusBar.foreground": "#15202b"
