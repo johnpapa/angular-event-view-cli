@@ -12,7 +12,7 @@ import { FilterTextService } from '../../shared/filter-text/filter-text.service'
 })
 export class SpeakerListComponent implements OnDestroy, OnInit {
   private subs = new Subscription();
-  @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
+  @ViewChild(FilterTextComponent, { static: true }) filterComponent: FilterTextComponent;
   speakers: Speaker[] = [];
   filteredSpeakers = this.speakers;
 
