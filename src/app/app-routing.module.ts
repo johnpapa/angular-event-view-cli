@@ -6,10 +6,10 @@ import { PageNotFoundComponent } from './page-not-found.component';
 
 // Define the paths to the lazily loaded modules
 const lazyPaths = {
-  admin: 'app/admin/admin.module#AdminModule',
-  dashboard: 'app/dashboard/dashboard.module#DashboardModule',
-  speakers: 'app/speakers/speakers.module#SpeakersModule',
-  sessions: 'app/sessions/sessions.module#SessionsModule'
+  admin: () => import('app/admin/admin.module').then(m => m.AdminModule),
+  dashboard: () => import('app/dashboard/dashboard.module').then(m => m.DashboardModule),
+  speakers: () => import('app/speakers/speakers.module').then(m => m.SpeakersModule),
+  sessions: () => import('app/sessions/sessions.module').then(m => m.SessionsModule)
 };
 
 const data = { preload: true };

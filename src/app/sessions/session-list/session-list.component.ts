@@ -14,7 +14,7 @@ export class SessionListComponent implements OnDestroy, OnInit {
   private subs = new Subscription();
   sessions: Session[];
   filteredSessions = this.sessions;
-  @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
+  @ViewChild(FilterTextComponent, { static: true }) filterComponent: FilterTextComponent;
 
   constructor(private filterService: FilterTextService, private sessionService: SessionService) {}
 
