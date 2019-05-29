@@ -1,6 +1,6 @@
+import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
-import { Injectable } from '@angular/core';
 import { mergeMap } from 'rxjs/operators';
 import { OnDemandPreloadService, OnDemandPreloadOptions } from './on-demand-preload.service';
 
