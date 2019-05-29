@@ -10,6 +10,7 @@ export class NetworkAwarePreloadStrategy implements PreloadingStrategy {
   preload(route: Route, load: () => Observable<any>): Observable<any> {
     return this.hasGoodConnection() ? load() : EMPTY;
   }
+
   hasGoodConnection(): boolean {
     const conn = navigator.connection;
     if (conn) {
