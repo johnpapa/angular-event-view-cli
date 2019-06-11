@@ -13,7 +13,7 @@ export interface ResetMessage {
 export class MessageService {
   private subject = new Subject<ResetMessage>();
 
-  state = this.subject;
+  state = this.subject.asObservable();
 
   constructor(private http: HttpClient, private toastService: ToastService) {}
 
