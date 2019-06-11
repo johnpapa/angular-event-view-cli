@@ -8,7 +8,8 @@ import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../../
 
 const sessionsUrl = CONFIG.baseUrls.sessions;
 
-@Injectable()
+// @Injectable()
+@Injectable({providedIn: 'root'})
 export class SessionService {
   onDbReset = this.messageService.state;
 

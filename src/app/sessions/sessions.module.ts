@@ -13,6 +13,6 @@ import { SessionService } from './shared/session.service';
   // We can put this service in the component or we can do it in the module.
   // This module is lazy loaded, so providing a service here
   // allows all features in this module to use it.
-  providers: [SessionService]
+  // providers: [SessionService]
 })
 export class SessionsModule {}
