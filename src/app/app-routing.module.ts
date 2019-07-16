@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, NoPreloading } from '@angular/router';
 import { AuthGuard } from './core';
 import { OnDemandPreloadStrategy } from './core/strategies/on-demand-preload-strategy';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -70,7 +70,7 @@ export const routes: Routes = [
        *
        */
 
-      { preloadingStrategy: OnDemandPreloadStrategy }
+      { preloadingStrategy: NoPreloading }
     )
   ],
   exports: [RouterModule]
