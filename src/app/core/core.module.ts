@@ -13,8 +13,8 @@ import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
 import { AuthService } from './auth.service';
-import { HeaderInterceptor, LogHeadersInterceptor, LogResponseTimeInterceptor } from './interceptors';
 import { SpeakerService } from './models/speaker.service';
+import { interceptors } from './interceptors';
 
 /**
  * imports: imports the module's exports.
@@ -40,13 +40,7 @@ import { SpeakerService } from './models/speaker.service';
     MessageService,
     AuthService,
     SpeakerService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HeaderInterceptor,
-      multi: true
-    },
-    { provide: HTTP_INTERCEPTORS, useClass: LogResponseTimeInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LogHeadersInterceptor, multi: true }
+    ...interceptors
   ]
 })
 export class CoreModule {

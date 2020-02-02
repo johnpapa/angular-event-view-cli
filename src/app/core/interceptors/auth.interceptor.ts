@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Injectable()
-export class HeaderInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -13,8 +13,8 @@ export class HeaderInterceptor implements HttpInterceptor {
     const authHeader = this.auth.getAuthorizationHeader();
     // Clone the request to add the new header.
     const httpHeaders = req.headers
-      .set('Authorization', authHeader)
-      .set('Content-Type', 'application/json');
+      .append('Authorization', authHeader)
+      .append('Content-Type', 'application/json');
     const authReq = req.clone({ headers: httpHeaders });
     console.log(`HTTP: Adding headers`);
     // Pass on the cloned request instead of the original request.
