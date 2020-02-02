@@ -43,9 +43,10 @@ export class SpeakerService {
 
   getSpeakers(): Observable<Speaker[]> {
     this.spinnerService.show();
-    return this.http
-      .get<Speaker[]>(speakersUrl)
-      .pipe(map(speakers => this.sortSpeakers(speakers)), this.catchHttpErrors());
+    return this.http.get<Speaker[]>(speakersUrl).pipe(
+      map(speakers => this.sortSpeakers(speakers)),
+      this.catchHttpErrors()
+    );
   }
 
   sortSpeakers(speakers: Speaker[]) {
@@ -62,7 +63,16 @@ export class SpeakerService {
 
   getSpeaker(id: number) {
     this.spinnerService.show();
-    return this.http.get<Speaker>(`${speakersUrl}/${id}`).pipe(this.catchHttpErrors());
+    return this.http.get<Speaker[]>(speakersUrl).pipe(
+      map(speakers => speakers.find(speaker => speaker.id === id)),
+      this.catchHttpErrors()
+    );
+    /**
+     * TODO:
+     *  When using JSON, we need the map above.
+     *  When using a DB, we use http, as shown below
+     */
+    // return this.http.get<Speaker>(`${speakersUrl}/${id}`).pipe(this.catchHttpErrors());
   }
 
   updateSpeaker(speaker: Speaker): Observable<Speaker> {
