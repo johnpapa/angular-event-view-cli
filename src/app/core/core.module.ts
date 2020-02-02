@@ -1,19 +1,13 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { EntityService } from './entity.service';
-import { ExceptionService } from './exception.service';
-import { MessageService } from './message.service';
 import { NavComponent } from './nav/nav.component';
 
 import { throwIfAlreadyLoaded } from './module-import-check';
 import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
-import { AuthService } from './auth.service';
-import { SpeakerService } from './models/speaker.service';
 import { httpInterceptorProviders } from './interceptors';
 
 /**
