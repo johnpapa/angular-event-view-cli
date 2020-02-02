@@ -6,14 +6,12 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { Speaker } from '../models';
+import { map } from 'rxjs/operators';
 
 export class TransformResponseInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const started = Date.now();
     return next.handle(req).pipe(
       map(event => {
         if (event instanceof HttpResponse) {

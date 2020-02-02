@@ -2,8 +2,6 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/c
 import { Observable } from 'rxjs';
 
 export class LogHeadersInterceptor implements HttpInterceptor {
-  constructor() {}
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log(`HTTP: Log headers:`);
     let headerList: { key: string; values: string }[] = [];
