@@ -24,14 +24,9 @@ export class TransformResponseInterceptor implements HttpInterceptor {
               }
               return speaker;
             });
+            console.log(`HTTP: Request transformed`);
             return event.clone({ body });
           }
-        }
-      }),
-      tap(event => {
-        if (event instanceof HttpResponse) {
-          const elapsed = Date.now() - started;
-          console.log(`HTTP: Request for ${req.urlWithParams} took ${elapsed} ms.`);
         }
       })
     );
