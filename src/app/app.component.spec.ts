@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { routes } from './app-routing.module';
+import { routes } from './routes';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 @Component({
