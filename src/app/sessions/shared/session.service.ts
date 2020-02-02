@@ -8,8 +8,7 @@ import { CONFIG, ExceptionService, MessageService, SpinnerService } from '../../
 
 const sessionsUrl = CONFIG.baseUrls.sessions;
 
-// @Injectable()
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class SessionService {
   onDbReset = this.messageService.state;
 
@@ -35,16 +34,17 @@ export class SessionService {
 
   deleteSession(session: Session) {
     this.spinnerService.show();
-    return <Observable<Session>>this.http
-      .delete(`${sessionsUrl}/${session.id}`)
-      .pipe(this.catchHttpErrors());
+    return <Observable<Session>>(
+      this.http.delete(`${sessionsUrl}/${session.id}`).pipe(this.catchHttpErrors())
+    );
   }
 
   getSessions(): Observable<Session[]> {
     this.spinnerService.show();
-    return this.http
-      .get<Session[]>(sessionsUrl)
-      .pipe(map(sessions => this.sortSessions(sessions)), this.catchHttpErrors());
+    return this.http.get<Session[]>(sessionsUrl).pipe(
+      map(sessions => this.sortSessions(sessions)),
+      this.catchHttpErrors()
+    );
   }
 
   sortSessions(sessions: Session[]) {
