@@ -13,8 +13,7 @@ import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
 import { AuthService } from './auth.service';
-import { HeaderInterceptor } from './header.interceptor';
-import { LogInterceptor } from './log.interceptor';
+import { HeaderInterceptor, LogHeadersInterceptor, LogResponseTimeInterceptor } from './interceptors';
 import { SpeakerService } from './models/speaker.service';
 
 /**
@@ -46,7 +45,8 @@ import { SpeakerService } from './models/speaker.service';
       useClass: HeaderInterceptor,
       multi: true
     },
-    { provide: HTTP_INTERCEPTORS, useClass: LogInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LogResponseTimeInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LogHeadersInterceptor, multi: true }
   ]
 })
 export class CoreModule {

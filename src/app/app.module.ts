@@ -19,8 +19,8 @@ import { LoginModule } from './login/login.module';
     // It is important that login comes before AppRoutingModule,
     // as AppRoutingModule defines the catch-all ** route
     AppRoutingModule,
-    CoreModule,
-    InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 10 })
+    CoreModule
+    // InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 10 })
   ],
   declarations: [AppComponent, PageNotFoundComponent],
   bootstrap: [AppComponent]
