@@ -1,7 +1,5 @@
 export class Speaker {
-  id: number;
-  name: string;
-  twitter: string;
   prevId: number;
   nextId: number;
+  constructor(public id: number, public name: string, public twitter: string) {}
 }
