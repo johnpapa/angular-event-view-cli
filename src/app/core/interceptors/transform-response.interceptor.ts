@@ -9,8 +9,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export class TransformResponseInterceptor implements HttpInterceptor {
-  constructor() {}
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       map(event => {
