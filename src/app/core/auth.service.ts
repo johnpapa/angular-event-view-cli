@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor() {}
-
-  getAuthorizationHeader() {
+  getAuthorizationToken() {
     return [
-      'Basic your-header-goes-here'
+      'Basic your-token-goes-here'
       // 'Authorization': 'Basic d2VudHdvcnRobWFuOkNoYW5nZV9tZQ==',
       // 'Accept': 'application/json;odata=verbose'
     ];

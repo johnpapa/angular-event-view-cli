@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EntityService {
   clone<T>(source: T): T {
     return Object.assign({}, source);

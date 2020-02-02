@@ -9,7 +9,7 @@ export interface ResetMessage {
   message: string;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MessageService {
   private subject = new Subject<ResetMessage>();
 

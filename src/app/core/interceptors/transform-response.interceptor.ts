@@ -23,7 +23,7 @@ export class TransformResponseInterceptor implements HttpInterceptor {
                 speaker.name = 'Rey Skywalker';
               }
               return speaker;
-            }); // let body = [...event.body, new Speaker(100, 'Ella', '@ellapapa')];
+            });
             return event.clone({ body });
           }
         }

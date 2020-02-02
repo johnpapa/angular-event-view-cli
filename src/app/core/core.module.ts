@@ -14,7 +14,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
 import { AuthService } from './auth.service';
 import { SpeakerService } from './models/speaker.service';
-import { interceptors } from './interceptors';
+import { httpInterceptorProviders } from './interceptors';
 
 /**
  * imports: imports the module's exports.
@@ -34,14 +34,7 @@ import { interceptors } from './interceptors';
   ],
   exports: [ModalModule, SpinnerModule, ToastModule, NavComponent],
   declarations: [NavComponent],
-  providers: [
-    EntityService,
-    // ExceptionService,
-    MessageService,
-    AuthService,
-    SpeakerService,
-    ...interceptors
-  ]
+  providers: [httpInterceptorProviders]
 })
 export class CoreModule {
   constructor(

@@ -11,7 +11,7 @@ import { SpinnerService } from '../spinner/spinner.service';
 
 const speakersUrl = CONFIG.baseUrls.speakers;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SpeakerService {
   onDbReset = this.messageService.state;
 
