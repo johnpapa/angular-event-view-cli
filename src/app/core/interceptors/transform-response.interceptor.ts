@@ -13,7 +13,7 @@ export class TransformResponseInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       map(event => {
         if (event instanceof HttpResponse) {
-          if (event.url.indexOf('speakers') && Array.isArray(event.body)) {
+          if (event.url && event.url.indexOf('speakers') >= 0 && Array.isArray(event.body)) {
             let body = event.body.map(speaker => {
               if (speaker.name.match(/rey/i)) {
                 speaker.name = 'Rey Skywalker';
@@ -23,6 +23,8 @@ export class TransformResponseInterceptor implements HttpInterceptor {
             console.log(`HTTP: Request transformed`);
             return event.clone({ body });
           }
+          return event.clone(); // undefined means dont change it
+          // return event.clone(undefined); // undefined means dont change it
         }
       })
     );
