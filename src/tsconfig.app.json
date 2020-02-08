@@ -5,9 +5,9 @@
     "baseUrl": "",
     "types": []
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts",
-    "**/wallaby-test.ts"
+  "files": [
+    "main.ts",
+    "polyfills.ts",
+    "typings.d.ts"
   ]
 }

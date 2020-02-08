@@ -7,7 +7,9 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class LogResponseTimeInterceptor implements HttpInterceptor {
   /**
    * Credit: https://angular.io/guide/http#http-interceptors
