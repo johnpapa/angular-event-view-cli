@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+// import { QuicklinkModule } from 'ngx-quicklink';
 
 import { FilterTextModule } from './filter-text/filter-text.module';
 
@@ -16,8 +17,19 @@ import { InitCapsPipe } from './init-caps.pipe';
 // Even so, we import/export both of these because most other modules
 // will import SharedModule and will need them.
 @NgModule({
-  imports: [CommonModule, FilterTextModule, FormsModule],
-  exports: [CommonModule, FilterTextModule, FormsModule, InitCapsPipe],
+  imports: [
+    CommonModule,
+    FilterTextModule,
+    FormsModule
+    // QuicklinkModule
+  ],
+  exports: [
+    CommonModule,
+    FilterTextModule,
+    FormsModule,
+    // QuicklinkModule,
+    InitCapsPipe
+  ],
   declarations: [InitCapsPipe]
 })
 export class SharedModule {}

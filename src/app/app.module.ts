@@ -4,18 +4,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, NoPreloading } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { routes } from './routes';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { CoreModule } from './core/core.module';
 import { LoginModule } from './login/login.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryStoreService } from '../api/in-memory-store.service';
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+import { routes } from './routes';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     LoginModule,
+    // QuicklinkModule,
 
     // Routes get loaded in order.
     // It is important that login comes before AppRoutingModule,
@@ -56,11 +58,19 @@ import { InMemoryStoreService } from '../api/in-memory-store.service';
        *  - custom strategy
        *  - https://dev.to/angular/predictive-preloading-strategy-for-your-angular-bundles-4bgl
        *
+       * QuickLinkStrategy
+       *  - Looks for links on the viewable page.
+       *  - If they lead to a module, it preloads it (if not already loaded).
+       *  - npm i ngx-quicklink --save
+       *  - https://github.com/mgechev/ngx-quicklink
        */
-      { preloadingStrategy: NoPreloading }
+      {
+        preloadingStrategy: NoPreloading
+        // enableTracing: true
+      }
     ),
-    CoreModule
-    // InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 10 })
+    CoreModule,
+    InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 10 })
   ],
   declarations: [AppComponent, PageNotFoundComponent],
   bootstrap: [AppComponent]
