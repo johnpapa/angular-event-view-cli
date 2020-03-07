@@ -1,5 +1,5 @@
-export * from './auth.guard';
-export * from './can-deactivate.guard';
+export * from './guards/auth.guard';
+export * from './guards/can-deactivate.guard';
 export * from './config';
 export * from './entity.service';
 export * from './exception.service';
