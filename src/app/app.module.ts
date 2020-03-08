@@ -4,18 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, NoPreloading } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found.component';
 import { LoginModule } from './login/login.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryStoreService } from '../api/in-memory-store.service';
 import { QuicklinkStrategy, QuicklinkModule } from 'ngx-quicklink';
-import {
-  httpInterceptorProviders,
-  NavComponent,
-  ModalComponent,
-  SpinnerComponent,
-  ToastComponent
-} from './core';
+import { httpInterceptorProviders, declarations } from './core';
 import { routes } from './routes';
 
 @NgModule({
@@ -77,14 +70,7 @@ import { routes } from './routes';
     ),
     InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 10 })
   ],
-  declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-    ModalComponent,
-    SpinnerComponent,
-    ToastComponent,
-    NavComponent
-  ],
+  declarations: [AppComponent, ...declarations],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

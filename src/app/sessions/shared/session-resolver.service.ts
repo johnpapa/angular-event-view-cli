@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Session } from './session.model';
 import { SessionService } from './session.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SessionResolver implements Resolve<Session> {
   constructor(private sessionService: SessionService, private router: Router) {}
 

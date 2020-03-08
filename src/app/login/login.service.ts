@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 
 import { SpinnerService, UserProfileService } from '../core';

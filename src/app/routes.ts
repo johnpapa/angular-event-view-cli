@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './core';
-import { PageNotFoundComponent } from './page-not-found.component';
+import { PageNotFoundComponent } from './core/page-not-found.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },

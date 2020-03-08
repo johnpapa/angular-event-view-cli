@@ -16,7 +16,7 @@ import { Router, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { routes } from './routes';
-import { PageNotFoundComponent } from './page-not-found.component';
+import { PageNotFoundComponent } from './core/page-not-found.component';
 
 @Component({
   template: '<div>lazy-loaded</div>'
@@ -34,7 +34,6 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
       declarations: [AppComponent, PageNotFoundComponent],
-      providers: [],
       schemas: [
         /**
          * This tells the compiler to ignore any unknown elements
