@@ -1,12 +1,25 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { SpinnerState, SpinnerService } from './spinner.service';
 
 @Component({
   selector: 'ev-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.css']
+  template: `
+    <div
+      class="spinner mdl-spinner mdl-js-spinner mdl-spinner--single-color"
+      [class.is-active]="visible"
+    ></div>
+  `,
+  styles: [
+    `
+      .spinner {
+        position: absolute;
+        left: 46%;
+        top: 12%;
+      }
+    `
+  ]
 })
 export class SpinnerComponent implements OnDestroy, OnInit {
   visible = false;

@@ -9,7 +9,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
-import { ToastService } from '../toast/toast.service';
+import { ToastService } from '../toast.service';
 import { UserProfileService } from '../user-profile.service';
 
 @Injectable({providedIn: 'root'})

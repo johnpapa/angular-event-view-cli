@@ -24,7 +24,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
-  // providers: [] // only put providers here we want that aren't provided yet
 })
 export class SpeakersRoutingModule {}
 

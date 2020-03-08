@@ -7,7 +7,7 @@ import { Speaker } from './speaker.model';
 import { CONFIG } from '../../core/config';
 import { ExceptionService } from '../exception.service';
 import { MessageService } from '../message.service';
-import { SpinnerService } from '../spinner/spinner.service';
+import { SpinnerService } from '../spinner.service';
 
 const speakersUrl = CONFIG.baseUrls.speakers;
 

@@ -4,3 +4,14 @@ export function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     throw new Error(msg);
   }
 }
+
+// @NgModule({
+// export class CoreModule {
+//   constructor(
+//     @Optional()
+//     @SkipSelf()
+//     parentModule: CoreModule
+//   ) {
+//     throwIfAlreadyLoaded(parentModule, 'CoreModule');
+//   }
+// }

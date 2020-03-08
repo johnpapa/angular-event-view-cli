@@ -5,19 +5,25 @@ import { RouterModule, NoPreloading } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { CoreModule } from './core/core.module';
 import { LoginModule } from './login/login.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryStoreService } from '../api/in-memory-store.service';
-import { QuicklinkStrategy } from 'ngx-quicklink';
+import { QuicklinkStrategy, QuicklinkModule } from 'ngx-quicklink';
+import {
+  httpInterceptorProviders,
+  NavComponent,
+  ModalComponent,
+  SpinnerComponent,
+  ToastComponent
+} from './core';
 import { routes } from './routes';
-import { OptInPreloadStrategy } from './core';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     LoginModule,
+    QuicklinkModule,
 
     // Routes get loaded in order.
     // It is important that login comes before AppRoutingModule,
@@ -69,10 +75,17 @@ import { OptInPreloadStrategy } from './core';
         preloadingStrategy: NoPreloading
       }
     ),
-    CoreModule,
     InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 10 })
   ],
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+    ModalComponent,
+    SpinnerComponent,
+    ToastComponent,
+    NavComponent
+  ],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
