@@ -16,7 +16,7 @@ import { Router, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { routes } from './routes';
-import { PageNotFoundComponent } from './core/page-not-found.component';
+import { PageNotFoundComponent } from './core';
 
 @Component({
   template: '<div>lazy-loaded</div>'

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 
 import { Speaker } from './speaker.model';
-import { CONFIG } from '../../core/config';
+import { CONFIG } from '../config';
 import { ExceptionService } from '../exception.service';
 import { MessageService } from '../message.service';
 import { SpinnerService } from '../spinner.service';
