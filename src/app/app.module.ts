@@ -9,15 +9,15 @@ import { CoreModule } from './core/core.module';
 import { LoginModule } from './login/login.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryStoreService } from '../api/in-memory-store.service';
-import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+import { QuicklinkStrategy } from 'ngx-quicklink';
 import { routes } from './routes';
+import { OptInPreloadStrategy } from './core';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     LoginModule,
-    // QuicklinkModule,
 
     // Routes get loaded in order.
     // It is important that login comes before AppRoutingModule,
@@ -65,8 +65,8 @@ import { routes } from './routes';
        *  - https://github.com/mgechev/ngx-quicklink
        */
       {
+        enableTracing: true,
         preloadingStrategy: NoPreloading
-        // enableTracing: true
       }
     ),
     CoreModule,

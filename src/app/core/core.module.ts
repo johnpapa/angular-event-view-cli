@@ -9,6 +9,7 @@ import { ModalModule } from './modal/modal.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { ToastModule } from './toast/toast.module';
 import { httpInterceptorProviders } from './interceptors';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 /**
  * imports: imports the module's exports.
@@ -21,6 +22,7 @@ import { httpInterceptorProviders } from './interceptors';
 @NgModule({
   imports: [
     CommonModule, // we use ngFor
+    QuicklinkModule,
     RouterModule, // because we use <router-outlet> and routerLink
     ModalModule,
     SpinnerModule,
