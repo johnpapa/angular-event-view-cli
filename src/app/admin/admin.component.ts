@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ev-admin',
-  templateUrl: './admin.component.html'
+  template: `
+    <article class="template animated slideInRight">
+      <h4>Admin</h4>
+      Welcome to the admin page!
+    </article>
+  `
 })
-export class AdminComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class AdminComponent {}
