@@ -4,7 +4,7 @@ import { MessageService, ModalService } from '../';
 import { OnDemandPreloadService } from '../';
 
 class MenuItem {
-  constructor(public caption: string, public path: string, public link: any[]) {}
+  constructor(public caption: string, public path: string, public link: string[]) {}
 }
 
 @Component({
