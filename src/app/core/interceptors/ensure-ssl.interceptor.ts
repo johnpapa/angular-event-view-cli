@@ -13,6 +13,7 @@ export class EnsureSSLInterceptor implements HttpInterceptor {
       url: req.url.replace('http://', 'https://')
     });
     // send the cloned, "secure" request to the next handler.
+    console.log(`HTTP: Rerouting all traffic to SSL`);
     return next.handle(secureReq);
   }
 }

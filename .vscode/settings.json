@@ -1,23 +1,23 @@
-// Place your settings in this file to overwrite default and user settings.
 {
+  "peacock.cacheBust": "736791",
+  "peacock.color": "grey",
   "workbench.colorCustomizations": {
-    "titleBar.inactiveBackground": "#00000099",
-    "activityBar.activeBackground": "#1a1a1a",
-    "activityBar.activeBorder": "#606020",
-    "activityBar.background": "#1a1a1a",
-    "activityBar.foreground": "#e7e7e7",
-    "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#606020",
+    "activityBar.background": "#999999",
+    "activityBar.activeBackground": "#999999",
+    "activityBar.activeBorder": "#5858c7",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#5858c7",
     "activityBarBadge.foreground": "#e7e7e7",
-    "panel.border": "#1a1a1a",
-    "editorGroup.border": "#1a1a1a",
-    "sideBar.border": "#1a1a1a",
-    "statusBar.background": "#000000",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#1a1a1a",
-    "titleBar.activeBackground": "#000000",
-    "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveForeground": "#e7e7e799"
-  },
-  "peacock.color": "black"
+    "titleBar.activeBackground": "#808080",
+    "titleBar.inactiveBackground": "#80808099",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveForeground": "#15202b99",
+    "statusBar.background": "#808080",
+    "statusBarItem.hoverBackground": "#666666",
+    "statusBar.foreground": "#15202b",
+    "panel.border": "#999999",
+    "sideBar.border": "#999999",
+    "editorGroup.border": "#999999"
+  }
 }
