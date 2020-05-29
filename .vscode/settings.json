@@ -18,6 +18,8 @@
     "statusBar.foreground": "#15202b",
     "panel.border": "#6cc4ba",
     "sideBar.border": "#6cc4ba",
-    "editorGroup.border": "#6cc4ba"
+    "editorGroup.border": "#6cc4ba",
+    "statusBar.border": "#49b4a8",
+    "titleBar.border": "#49b4a8"
   }
 }
