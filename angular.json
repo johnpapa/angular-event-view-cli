@@ -34,24 +34,30 @@
             ],
             "styles": [
               {
-                "input": "src/assets/material.min.css"
+                "input": "src/assets/material.min.css",
+                "inject": true
               },
               {
-                "input": "src/assets/sprite-av-white.css"
+                "input": "src/assets/sprite-av-white.css",
+                "inject": true
               },
               {
-                "input": "src/assets/animate.css"
+                "input": "src/assets/animate.css",
+                "inject": true
               },
               {
-                "input": "src/assets/app.css"
+                "input": "src/assets/app.css",
+                "inject": true
               },
               {
-                "input": "src/styles.css"
+                "input": "src/styles.css",
+                "inject": true
               }
             ],
             "scripts": [
               {
-                "input": "src/assets/material.min.js"
+                "input": "src/assets/material.min.js",
+                "inject": true
               }
             ]
           },
@@ -66,7 +72,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -107,24 +112,30 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
               {
-                "input": "src/assets/material.min.js"
+                "input": "src/assets/material.min.js",
+                "inject": true
               }
             ],
             "styles": [
               {
-                "input": "src/assets/material.min.css"
+                "input": "src/assets/material.min.css",
+                "inject": true
               },
               {
-                "input": "src/assets/sprite-av-white.css"
+                "input": "src/assets/sprite-av-white.css",
+                "inject": true
               },
               {
-                "input": "src/assets/animate.css"
+                "input": "src/assets/animate.css",
+                "inject": true
               },
               {
-                "input": "src/assets/app.css"
+                "input": "src/assets/app.css",
+                "inject": true
               },
               {
-                "input": "src/styles.css"
+                "input": "src/styles.css",
+                "inject": true
               }
             ],
             "assets": [
@@ -190,7 +201,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "ev",
-      "styleext": "css"
+      "style": "css"
     },
     "@schematics/angular:directive": {
       "prefix": "ev"
