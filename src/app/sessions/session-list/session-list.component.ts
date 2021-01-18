@@ -8,15 +8,18 @@ import { SessionService } from '../shared/session.service';
 @Component({
   selector: 'ev-session-list',
   templateUrl: './session-list.component.html',
-  styleUrls: ['./session-list.component.css']
+  styleUrls: ['./session-list.component.css'],
 })
 export class SessionListComponent implements OnDestroy, OnInit {
   private subs = new Subscription();
   sessions: Session[];
-  filteredSessions = this.sessions;
+  filteredSessions: Session[];
+
   @ViewChild(FilterTextComponent, { static: true }) filterComponent: FilterTextComponent;
 
-  constructor(private filterService: FilterTextService, private sessionService: SessionService) {}
+  constructor(private filterService: FilterTextService, private sessionService: SessionService) {
+    this.filteredSessions = this.sessions;
+  }
 
   filterChanged(searchText: string) {
     const props = ['id', 'name', 'level'];
@@ -26,11 +29,11 @@ export class SessionListComponent implements OnDestroy, OnInit {
   getSessions() {
     this.sessions = [];
     this.sessionService.getSessions().subscribe(
-      sessions => {
+      (sessions) => {
         this.sessions = this.filteredSessions = sessions;
         this.filterComponent.clear();
       },
-      error => {
+      (error) => {
         console.log('error occurred here');
         console.log(error);
       },
