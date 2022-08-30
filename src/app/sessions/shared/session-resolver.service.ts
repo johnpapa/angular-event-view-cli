@@ -6,15 +6,27 @@ import { map, catchError } from 'rxjs/operators';
 import { Session } from './session.model';
 import { SessionService } from './session.service';
 
+export class Foo implements Resolve<Session> {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Session | Observable<Session> | Promise<Session> {
+    throw new Error('Method not implemented.');
+  }
+}
+
 @Injectable({ providedIn: 'root' })
 export class SessionResolver implements Resolve<Session> {
   constructor(private sessionService: SessionService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Session | Observable<Session> | Promise<Session> {
     // const id = +route.params['id'];
-    const id = +route.paramMap.get('id');
+    const id = +(route.paramMap.get('id') || 0);
     return this.sessionService.getSession(id).pipe(
-      map(session => {
+      map((session) => {
         if (session) {
           return session;
         }
@@ -29,7 +41,8 @@ export class SessionResolver implements Resolve<Session> {
       catchError((error: any) => {
         console.log(`${error}. Heading back to session list`);
         this.router.navigate(['/sessions']);
-        return of(null);
+        // return of(null);
+        return of(new Session());
       })
     );
   }
