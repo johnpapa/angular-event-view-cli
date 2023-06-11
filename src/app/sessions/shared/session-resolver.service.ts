@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { Session } from './session.model';
 import { SessionService } from './session.service';
 
-export class Foo implements Resolve<Session> {
+export class Foo  {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -16,7 +16,7 @@ export class Foo implements Resolve<Session> {
 }
 
 @Injectable({ providedIn: 'root' })
-export class SessionResolver implements Resolve<Session> {
+export class SessionResolver  {
   constructor(private sessionService: SessionService, private router: Router) {}
 
   resolve(

@@ -111,8 +111,8 @@ class MenuItem {
           font-size: 12px;
         }
       }
-    `
-  ]
+    `,
+  ],
 })
 export class NavComponent implements OnInit {
   menuItems: MenuItem[];
@@ -123,7 +123,7 @@ export class NavComponent implements OnInit {
       { caption: 'Speakers', path: 'speakers', link: '/speakers' },
       { caption: 'Sessions', path: 'sessions', link: '/sessions' },
       { caption: 'Admin', path: 'admin', link: '/admin' },
-      { caption: 'Login', path: 'login', link: '/login' }
+      { caption: 'Login', path: 'login', link: '/login' },
     ];
   }
 
@@ -144,7 +144,7 @@ export class NavComponent implements OnInit {
   resetDb() {
     // console.log('*** The "Reset DB" is disabled until in memory API is re-enabled');
     const msg = 'Are you sure you want to reset the database?';
-    this.modalService.activate(msg).then(responseOK => {
+    this.modalService.activate(msg).then((responseOK) => {
       if (responseOK) {
         this.messageService.resetDb();
       }

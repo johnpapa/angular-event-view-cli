@@ -64,7 +64,7 @@ import { routes } from './routes';
        *  - https://github.com/mgechev/ngx-quicklink
        */
       {
-        enableTracing: true,
+        // enableTracing: true,
         preloadingStrategy: NoPreloading
       }
     ),

@@ -81,8 +81,8 @@ const KEY_ESC = 27;
       .dialog-container .dialog-button-bar button {
         margin: 0 0 0 1em;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class ModalComponent implements OnInit {
   title: string;
@@ -96,7 +96,7 @@ export class ModalComponent implements OnInit {
     title: 'Confirmation',
     message: 'Do you want to cancel your changes?',
     cancelText: 'Cancel',
-    okText: 'OK'
+    okText: 'OK',
   };
   private modalElement: any;
   private cancelButton: any;
@@ -106,11 +106,16 @@ export class ModalComponent implements OnInit {
     modalService.activate = this.activate.bind(this);
   }
 
-  activate(message = this.defaults.message, title = this.defaults.title) {
-    this.title = title;
+  activate(
+    // title = this.defaults.title,
+    message = this.defaults.message
+    // cancelText = this.defaults.cancelText,
+    // okText = this.defaults.okText
+  ) {
+    this.title = this.defaults.title;
     this.message = message;
-    this.okText = this.defaults.okText;
     this.cancelText = this.defaults.cancelText;
+    this.okText = this.defaults.okText;
 
     const promise = new Promise<boolean>((resolve, reject) => {
       this.negativeOnClick = (e: any) => resolve(false);

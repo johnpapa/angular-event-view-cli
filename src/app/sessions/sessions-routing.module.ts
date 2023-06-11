@@ -5,7 +5,7 @@ import { SessionListComponent } from './session-list/session-list.component';
 import { SessionComponent } from './session/session.component';
 import { SessionsComponent } from './sessions.component';
 import { SessionResolver } from './shared/session-resolver.service';
-import { CanDeactivateGuard } from '../core';
+import { canDeactivateGuard } from '../core';
 
 const routes: Routes = [
   {
@@ -14,18 +14,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: SessionListComponent
+        component: SessionListComponent,
       },
       {
         path: ':id',
         component: SessionComponent,
-        canDeactivate: [CanDeactivateGuard],
+        canDeactivate: [canDeactivateGuard],
         resolve: {
-          session: SessionResolver
-        }
-      }
-    ]
-  }
+          session: SessionResolver,
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({

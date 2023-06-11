@@ -9,7 +9,7 @@ import { SessionService } from '../shared/session.service';
 @Component({
   selector: 'ev-session',
   templateUrl: 'session.component.html',
-  styleUrls: ['session.component.css']
+  styleUrls: ['session.component.css'],
 })
 export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactivate {
   private subs = new Subscription();
@@ -35,12 +35,13 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   }
 
   canDeactivate() {
-    return !this.session || !this.isDirty() || this.modalService.activate();
+    const msg = 'Are you sure you want to lose your changes?';
+    return !this.session || !this.isDirty() || this.modalService.activate(msg);
   }
 
   delete() {
     const msg = `Do you want to delete the ${this.session.name}?`;
-    this.modalService.activate(msg).then(responseOK => {
+    this.modalService.activate(msg).then((responseOK) => {
       if (responseOK) {
         this.cancel(false);
         this.sessionService.deleteSession(this.session).subscribe(
@@ -49,7 +50,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
             this.toastService.activate(`Deleted ${this.session.name}`);
             this.gotoSessions();
           },
-          err => this.handleServiceError('Delete', err), // Failure path
+          (err) => this.handleServiceError('Delete', err), // Failure path
           () => console.log('Delete Completed') // Completed actions
         );
       }
@@ -92,7 +93,7 @@ export class SessionComponent implements OnDestroy, OnInit, CanComponentDeactiva
   save() {
     const session = (this.session = this.entityService.merge(this.session, this.editSession));
     if (session.id == null) {
-      this.sessionService.addSession(session).subscribe(s => {
+      this.sessionService.addSession(session).subscribe((s) => {
         this.setEditSession(s);
         this.toastService.activate(`Successfully added ${s.name}`);
         this.gotoSessions();
