@@ -16,13 +16,11 @@ export const routes: Routes = [
   {
     path: 'speakers',
     loadChildren: () => import('./speakers/speakers.module').then((m) => m.SpeakersModule),
-    canActivate: [isAuthenticatedGuard],
     data: { preload: true },
   },
   {
     path: 'sessions',
     loadChildren: () => import('./sessions/sessions.module').then((m) => m.SessionsModule),
-    canActivate: [isAuthenticatedGuard],
     data: { preload: true },
   },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },

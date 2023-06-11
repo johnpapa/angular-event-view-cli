@@ -4,12 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { SpeakerListComponent } from './speaker-list/speaker-list.component';
 import { SpeakerComponent } from './speaker/speaker.component';
 import { SpeakersComponent } from './speakers.component';
-import { canDeactivateGuard } from '../core';
+import { canDeactivateGuard, isAuthenticatedGuard } from '../core';
 
 const routes: Routes = [
   {
     path: '',
     component: SpeakersComponent,
+    canActivateChild: [isAuthenticatedGuard],
     children: [
       { path: '', component: SpeakerListComponent },
       {

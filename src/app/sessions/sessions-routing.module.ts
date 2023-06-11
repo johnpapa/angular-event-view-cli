@@ -5,12 +5,13 @@ import { SessionListComponent } from './session-list/session-list.component';
 import { SessionComponent } from './session/session.component';
 import { SessionsComponent } from './sessions.component';
 import { SessionResolver } from './shared/session-resolver.service';
-import { canDeactivateGuard } from '../core';
+import { canDeactivateGuard, isAuthenticatedGuard } from '../core';
 
 const routes: Routes = [
   {
     path: '',
     component: SessionsComponent,
+    canActivateChild: [isAuthenticatedGuard],
     children: [
       {
         path: '',
@@ -30,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class SessionsRoutingModule {}
 

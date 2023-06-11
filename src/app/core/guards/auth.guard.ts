@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import {
-  ActivatedRoute,
   ActivatedRouteSnapshot,
   CanActivateFn,
   Router,
