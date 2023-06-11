@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SpeakerListComponent } from './speaker-list/speaker-list.component';
 import { SpeakerComponent } from './speaker/speaker.component';
 import { SpeakersComponent } from './speakers.component';
-import { CanDeactivateGuard } from '../core';
+import { canDeactivateGuard } from '../core';
 
 const routes: Routes = [
   {
@@ -15,15 +15,15 @@ const routes: Routes = [
       {
         path: ':id',
         component: SpeakerComponent,
-        canDeactivate: [CanDeactivateGuard]
-      }
-    ]
-  }
+        canDeactivate: [canDeactivateGuard],
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class SpeakersRoutingModule {}
 

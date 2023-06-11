@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { Speaker, SpeakerService } from '../../core';
@@ -36,8 +36,13 @@ export class SpeakerComponent implements OnDestroy, OnInit, CanComponentDeactiva
     }
   }
 
-  canDeactivate() {
-    return !this.speaker || !this.isDirty() || this.modalService.activate();
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.isDirty()) {
+      return true;
+    }
+
+    const msg = 'Are you sure you want to lose your changes?';
+    return !this.speaker || !this.isDirty() || this.modalService.activate(msg);
   }
 
   delete() {
