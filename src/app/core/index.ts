@@ -5,6 +5,7 @@ import { SpinnerComponent } from './spinner.component';
 import { ToastComponent } from './toast.component';
 
 export * from './guards/auth.guard';
+export * from './guards/auth-load.guard';
 export * from './guards/can-deactivate.guard';
 export * from './config';
 export * from './entity.service';
@@ -28,5 +29,5 @@ export const declarations = [
   NavComponent,
   PageNotFoundComponent,
   SpinnerComponent,
-  ToastComponent
+  ToastComponent,
 ];
